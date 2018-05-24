@@ -1,0 +1,46 @@
+<div class="container">
+
+  <h4>My Projects</h4>
+
+  <div class="projects-container">
+    <ul>
+      <!-- Tästä listasta oikeesti dynaaminen -->
+      <li class="card">
+        <!-- dynaaminen projects osoite-->
+        <a href="projects"  (click)="goToProject()">
+          <mat-card class="project-card color-light">
+            <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <mat-card-header class="project-header">
+                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                <mat-card-title class="heading1">My Project</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <br>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum maiores itaque possimus sed! Dolores ad illum at et blanditiis, eaque iste voluptatibus, hic doloribus consequatur ea in amet aspernatur.
+              </p>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </li>
+
+      <li class="card">
+          <a href="projects"  (click)="goToProject()">
+            <mat-card class="project-card color-light">
+              <mat-card-header>
+                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                <mat-card-title class="heading1">My Project</mat-card-title>
+              </mat-card-header>
+              <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+              <mat-card-content>
+                <br>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum maiores itaque possimus sed! Dolores ad illum at et blanditiis, eaque iste voluptatibus, hic doloribus consequatur ea in amet aspernatur.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </a>
+        </li>
+    </ul>
+  </div> <!-- projects-contaner ends-->
+</div> <!-- contaner ends-->

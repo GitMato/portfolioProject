@@ -1,0 +1,32 @@
+.project-card {
+    max-width: 80%;
+  }
+  
+.example-header-image {
+background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+background-size: cover;
+}
+
+.color-light {
+    background: rgb(136, 160, 177);
+}
+
+ul li {
+    display: grid;
+    margin-right: 0px;
+    margin-block-end: 5px;
+}
+ul li a {
+    font-size: 1em;
+}
+
+.project-header {
+    padding: 1em 0em 0em 0em;
+}
+.project-card {
+    opacity: 0.9;
+}
+
+.project-card:hover {
+    opacity: 1;
+}
