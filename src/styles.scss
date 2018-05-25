@@ -4,9 +4,10 @@
 
 body {
     background:rgb(62, 74, 82);
-    padding: 3em;
+    padding: 0em;
     font-family: 'Raleway', 'Arial';
     color:#fff;
+    margin: 0;
 }
 
 .heading1 {
@@ -16,7 +17,7 @@ body {
 
 ul {
     list-style-type:none;
-    margin:0 0 2em 0;
+    margin:0 0 0em 0;
     padding:0;
 }
 
@@ -35,4 +36,10 @@ a {
 h4 {
     font-size: 1.5em;
     opacity: 0.5;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    //margin: 3em;
 }

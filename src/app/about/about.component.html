@@ -8,3 +8,16 @@
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid animi molestiae commodi quia dicta officiis nihil voluptatum distinctio harum expedita quas eveniet laboriosam, hic inventore voluptates natus temporibus voluptatem?
 </div>
 <img src="http://atomi.mbnet.fi/naytto/GalaxyQuest/html/DoxygenPIC.png" alt="pic">
+
+<div class="container">
+
+  <div class="h4">Palaute</div>
+
+  <form name="Feedback">
+    <input type="text" name="Nickname" placeholder="Your nickname" id="1" *ngIf="checkForm(1)">
+    <input type="text" name="Email" placeholder="Your Email" id="2" *ngIf="checkForm(2)">
+    <input type="text" name="Message" placeholder="Your Message" id="3" *ngIf="checkForm(3)">
+    <input type="submit" value="Previous" (click)="previousFormSection()" >
+    <input type="submit" value="Next" (click)="nextFormSection()" >
+  </form>
+</div>
