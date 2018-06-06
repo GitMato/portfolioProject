@@ -50,7 +50,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     // this.carouselInterval.subscribe(n =>
     //   console.log(`It's been ${n} seconds since subscribing!`));
 
-    //this.carouselInterval.subscribe(() => this.next());
+    this.carouselInterval.subscribe(() => this.next());
 
   }
 
@@ -61,6 +61,15 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     // this.carouselWrapperStyle = {
     //  width: `${this.itemWidth}px`, height: `${this.itemWidth}px`
     // }
+  }
+
+  isCurrentSlide(compareSlide: number){
+    if (this.currentSlide == compareSlide){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   next() {

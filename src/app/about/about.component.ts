@@ -17,6 +17,7 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state } 
   styleUrls: ['./about.component.scss'],
   animations: [
 
+    // unused animation atm, prob going to scrap this
     trigger('formnameTrigger', [
       transition('void => *', [
         style({transform: 'translateX(100%)'}),
