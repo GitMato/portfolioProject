@@ -38,3 +38,33 @@ ul.card {
     display: inline-block;
 }
 
+.rotImage {
+    display: inline;
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    padding: 0em 0em 0em 1em;
+}
+
+.home-3d-viewer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 66%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.home-3d {
+    position: relative;
+    height: 420px;
+    padding: 0;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    perspective: 500px;
+    box-sizing: border-box;
+}

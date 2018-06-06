@@ -3,21 +3,55 @@
 </p>
 <br>
 <div>
-  <div class="heading1"><strong>Tomi Mannila</strong></div>
+  <div><h1><strong>Tomi Mannila</strong></h1></div>
   <br>
   Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid animi molestiae commodi quia dicta officiis nihil voluptatum distinctio harum expedita quas eveniet laboriosam, hic inventore voluptates natus temporibus voluptatem?
 </div>
-<img src="http://atomi.mbnet.fi/naytto/GalaxyQuest/html/DoxygenPIC.png" alt="pic">
+<!--<img src="http://atomi.mbnet.fi/naytto/GalaxyQuest/html/DoxygenPIC.png" alt="pic">-->
 
-<div class="container">
+<div class="section feedback" style="text-align: center;">
 
-  <div class="h4">Palaute</div>
+  <div><h1>Palaute</h1></div>
 
   <form name="Feedback">
-    <input type="text" name="Nickname" placeholder="Your nickname" id="1" *ngIf="checkForm(1)">
-    <input type="text" name="Email" placeholder="Your Email" id="2" *ngIf="checkForm(2)">
-    <input type="text" name="Message" placeholder="Your Message" id="3" *ngIf="checkForm(3)">
-    <input type="submit" value="Previous" (click)="previousFormSection()" >
-    <input type="submit" value="Next" (click)="nextFormSection()" >
+    <div *ngIf="checkForm(1)">
+    <!--<div>-->
+      <input type="text" class="feedback-input" name="Date" placeholder="Date" id="1" [(ngModel)]="formDate">
+    </div>
+    <div *ngIf="checkForm(2)">
+      <input type="text" class="feedback-input" name="Email" placeholder="Your Email" id="2" [(ngModel)]="formEmail" email>
+    </div>
+    <div *ngIf="checkForm(3)">
+      <input type="text" class="feedback-input" name="Name" placeholder="Your Name" id="3" [(ngModel)]="formName">
+    </div>
+    <div *ngIf="checkForm(4)">
+      <input type="text" class="feedback-input" name="Message" placeholder="Neljäs" id="4" [(ngModel)]="formMessage"> 
+    
+    </div>
+    <div>
+    <input type="submit" value="Previous" (click)="previousFormSection()" [disabled]="checkForm(1)">
+    <input type="submit" value="nextBtnValue" name="next-btn" (click)="nextFormSection()" [disabled]="disableButton()">
+    </div>
   </form>
+
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step active" *ngIf="checkFormProgress(1); else setActive"></span>
+    <span class="step" *ngIf="checkFormProgress(2); else setActive"></span>
+    <span class="step" *ngIf="checkFormProgress(3); else setActive"></span>
+    <span class="step" *ngIf="checkFormProgress(4); else setActive"></span>
+    <ng-template #setActive><span class="step active"></span></ng-template>
+  </div>
+
+  <div>
+    <p>Date: {{ formDate }}</p>
+    <p>Email: {{ formEmail }}</p>
+    <p>Name: {{ formName }}</p>
+    <p>Message: {{ formMessage }}</p>
+  </div>
+  <!--
+  <div>
+    <p>Test: {{today | date:'full':'':'fi' }}</p>
+  </div>
+  -->
 </div>

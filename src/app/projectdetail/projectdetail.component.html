@@ -1,0 +1,27 @@
+
+<div *ngIf="project">
+<img src={{project.imgUrl}} class="centered">
+
+
+<p class="h1">{{project.name}}</p>
+
+<p>{{project.details}}</p>
+
+<p class="h1">
+    Tools
+  </p>
+<ul *ngIf="project.tools">
+  <li class="" *ngFor="let tool of project.tools">
+    {{tool}}
+  </li>
+</ul>
+
+
+<div class="extra-img" *ngIf="project.extraimg">
+<p>valinnaiset pienet lisäkuvat</p>
+<span *ngFor="let img of project.extraimg">
+  <img src="img" alt="" class="">
+</span>
+</div>
+
+</div>

@@ -26,13 +26,14 @@
   <nav>
     <ul class="navigation">
       <li class="navigation-item"><a routerLink="" (click)="setTitle('Home')">Home</a></li>
-      <li class="navigation-item"><a routerLink="projects/24" (click)="setTitle('My Projects')">My Projects</a></li>
+      <li class="navigation-item"><a routerLink="projects" (click)="setTitle('My Projects')">My Projects</a></li>
       <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
     </ul>
   </nav>
 </header>
-<footer class="footer center">Made by Tomi Mannila 2018</footer>
 <!--<div class="container"><app-home></app-home></div>-->
 <div class="container">
 <router-outlet></router-outlet>
+
 </div>
+<footer class="footer center">Made by Tomi Mannila 2018</footer>

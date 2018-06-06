@@ -1,0 +1,68 @@
+.carousel-wrapper {
+    overflow: hidden;
+  }
+
+.carousel {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 6000px;
+}
+.carousel-inner {
+    display: flex;
+}
+
+
+.project-pic {
+    padding: 0em;
+    height: 500px;
+    width: 500px;
+    background-size: cover;
+    position: absolute;
+}
+
+.project-card {
+    padding: 0em;
+    height: 500px;
+    width: 500px;
+    //max-width: 80%;
+    margin: 0 auto;
+  }
+
+.carousel-card-title {
+    width: 500px;
+    //height: 50px;
+    background-color: black;
+    opacity: 0.5;
+    color: white;
+    padding: 0em 0em 1em 0em;
+    //position: absolute;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
+
+.project-card:hover {
+    
+    .project-pic {
+        
+        //width: 110%;
+        //height: 110%;
+        //zoom: 105%;
+        transform: scale(1.05);
+
+    }
+}
+
+// .prev-btn{
+//     position: absolute;
+//     height: 500px;
+//     margin: auto;
+//     align-items: center;
+// }
+
+li {
+    padding: 0;
+    margin: 0 auto;
+}

@@ -1,0 +1,39 @@
+/* Make circles that indicate the steps of the form: */
+// .step {
+//     height: 15px;
+//     width: 15px;
+//     margin: 0 2px;
+//     background-color: #bbbbbb;
+//     border: none; 
+//     border-radius: 50%;
+//     display: inline-block;
+//     opacity: 0.5;
+//     &.active {
+//         opacity: 1;
+//     }
+//     &.finish {
+//         background-color: #4CAF50;
+//     }
+// }
+
+.feedback {
+    
+    //margin: auto;
+    
+    &.feedback-input {
+        
+    }
+}
+
+input[type="text"] 
+      {
+         width: 60%;
+         font-size: 20px;
+         border: 1px solid #CCC;
+      }
+
+input[type="submit"]
+{
+    width: 100px;
+    height: 30px;;
+}

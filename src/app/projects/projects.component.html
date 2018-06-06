@@ -1,45 +1,27 @@
 <h4>My Projects</h4>
 
 <div class="projects-container">
-  <ul>
+  <ul @list>
     <!-- Tästä listasta oikeesti dynaaminen -->
-    <li class="card">
+    <li @projectTrigger class="card" *ngFor="let project of projects">
       <!-- dynaaminen projects osoite-->
-      <a href="projects"  (click)="goToProject()">
+      
+      <a [routerLink]="['/projects', project.id]">
+      <!--<a href="projects"  (click)="goToProject()">-->
         <mat-card class="project-card color-light flex">
 
-          <img mat-card-lg-image class="project-pic" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+          <img mat-card-lg-image class="project-pic" [src]="project.imgUrl" [alt]="project.imgAlt">
           <mat-card-header class="project-header">
               <!--<div mat-card-avatar class="example-header-image"></div>-->
-              <mat-card-title class="heading1">My Project</mat-card-title>
+              <mat-card-title class="h1">{{project.name}}</mat-card-title>
           </mat-card-header>
           <mat-card-content>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum maiores itaque possimus sed! Dolores ad illum at et blanditiis, eaque iste voluptatibus, hic doloribus consequatur ea in amet aspernatur.
+              {{project.description}}
             </p>
-
           </mat-card-content>
         </mat-card>
       </a>
     </li>
-
-    <!-- Tästä listasta oikeesti dynaaminen -->
-    <li class="card">
-        <!-- dynaaminen projects osoite-->
-        <a href="projects"  (click)="goToProject()">
-          <mat-card class="project-card color-light flex">
-            <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <mat-card-header class="project-header">
-                <!--<div mat-card-avatar class="example-header-image"></div>-->
-                <mat-card-title class="heading1">Todella pitkä otsikko</mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia ipsum maiores itaque possimus sed! Dolores ad illum at et blanditiis, eaque iste voluptatibus, hic doloribus consequatur ea in amet aspernatur.
-              </p>
-            </mat-card-content>
-          </mat-card>
-        </a>
-      </li>
   </ul>
-</div> <!-- projects-contaner ends-->
+</div> <!-- projects-container ends-->

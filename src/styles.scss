@@ -2,17 +2,28 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,700');
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 body {
     background:rgb(62, 74, 82);
     padding: 0em;
-    font-family: 'Raleway', 'Arial';
     color:#fff;
     margin: 0;
 }
 
-.heading1 {
+body, h1 {
+    font-family: 'Raleway', 'Arial';
+    color:#fff;
+}
+
+h1 {
     font-size: 25px;
-    //text-transform: uppercase;
+}
+
+
+h4 {
+    font-size: 1.5em;
+    opacity: 0.5;
 }
 
 ul {
@@ -33,13 +44,40 @@ a {
     text-decoration:none;
 }
 
-h4 {
-    font-size: 1.5em;
-    opacity: 0.5;
-}
-
 .container {
     width: 80%;
     margin: auto;
     //margin: 3em;
+}
+
+.section {
+    margin: 2em 0em 0em 0em;
+}
+
+.centered {
+    display: block;
+    margin: auto;
+    width: 80%;
+    max-width: 700px;
+}
+
+.mat-card-header-text {
+    margin: 0 !important;
+}
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none; 
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+    &.active {
+        opacity: 1;
+    }
+    &.finish {
+        background-color: #4CAF50;
+    }
 }
