@@ -56,13 +56,15 @@ export class AboutComponent implements OnInit {
   
 
   ngOnInit() {
+
+    // formDate should be saved only when submitting the form, this is just for testing
     // formatDate(value: string | number | Date, format: string, locale: string, timezone?: string): string
     this.formDate = formatDate(Date.now(), "HH:mm dd.MM.y", 'fi');
 
   }
 
 
-  // tutorial
+  // from tutorial
   sendMeHome() {
     this.router.navigate(['projects']);
   }

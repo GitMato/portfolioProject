@@ -72,6 +72,8 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     }
   }
 
+
+  // Interval should be reset or something everytime next() is called
   next() {
     
     //if( this.currentSlide + 1 === this.projects.length ) return;
@@ -96,7 +98,12 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
 
   prev() {
-    if( this.currentSlide === 0 ) return;
+
+    
+    //if( this.currentSlide === 0 ) return;
+    if( this.currentSlide === 0 ){
+      this.currentSlide = this.projects.length;
+    }
  
     //this.currentSlide = ((this.currentSlide - 1) + this.items.length) % this.items.length;
 

@@ -47,7 +47,6 @@
 <!-- Circles which indicates the steps of the carousel -->
 <div style="text-align:center;margin-top:40px;" >
   <span class="step" *ngFor="let project of projects; let i = index;" [attr.id] ="i" [ngClass]="{'active': isCurrentSlide(i)}"></span>
-  <!--<ng-template #setActive><span class="step active"></span></ng-template>-->
 </div>
 <!-- 
 <div class="centered">
