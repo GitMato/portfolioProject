@@ -21,6 +21,7 @@ import {MatCardModule,
         MatExpansionModule,
         MatInputModule} from '@angular/material';
 import { CarouselComponent } from './carousel/carousel.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -35,7 +36,8 @@ registerLocaleData(localeFi, 'fi');
     ProjectsComponent,
     ProjectdetailComponent,
     PagenotfoundComponent,
-    CarouselComponent
+    CarouselComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

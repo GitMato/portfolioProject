@@ -5,6 +5,7 @@ import { AboutComponent } from './about/about.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjectdetailComponent } from './projectdetail/projectdetail.component';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: 'projects/:id',
     component: ProjectdetailComponent,
+
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
 
   },
   {
