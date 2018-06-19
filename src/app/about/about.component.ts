@@ -2,10 +2,11 @@ import { Component, OnInit, LOCALE_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { formatDate, getLocaleDateFormat, getLocaleId } from '@angular/common';
-import { NullTemplateVisitor } from '@angular/compiler';
+//import { NullTemplateVisitor } from '@angular/compiler';
 
 // vähä ku timeout
-import { interval } from 'rxjs';
+//import { interval } from 'rxjs';
+
 
 // Animations
 import {trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
@@ -47,9 +48,11 @@ export class AboutComponent implements OnInit {
   today = Date.now();
   //today1 = Date.now();
 
-  private secondInterval = interval(1000);
+  //private secondInterval = interval(1000);
 
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(
+              private route: ActivatedRoute, 
+              private router: Router) {
     //this.route.params.subscribe(res => console.log(res.id));
 
    }
@@ -60,6 +63,8 @@ export class AboutComponent implements OnInit {
     // formDate should be saved only when submitting the form, this is just for testing
     // formatDate(value: string | number | Date, format: string, locale: string, timezone?: string): string
     this.formDate = formatDate(Date.now(), "HH:mm dd.MM.y", 'fi');
+
+    
 
   }
 

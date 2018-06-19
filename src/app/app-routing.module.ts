@@ -6,6 +6,10 @@ import { ProjectsComponent } from './projects/projects.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjectdetailComponent } from './projectdetail/projectdetail.component';
 import { LoginComponent } from './login/login.component';
+import { ProjectModifyComponent } from './project-modify/project-modify.component';
+
+//testing
+import {TestViewComponent} from './test-view/test-view.component';
 
 
 const routes: Routes = [
@@ -34,8 +38,21 @@ const routes: Routes = [
 
   },
   {
+    path: 'modify',
+    component: ProjectModifyComponent,
+  },
+  {
+    path: 'modify/:id',
+    component: ProjectModifyComponent,
+  },
+  // testi
+  {
+    path: 'testview',
+    component: TestViewComponent,
+  },
+  {
     path: '**',
-    component: PagenotfoundComponent
+    component: PagenotfoundComponent,
   }
 
 ];

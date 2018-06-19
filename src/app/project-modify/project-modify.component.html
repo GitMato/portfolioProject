@@ -1,0 +1,66 @@
+<!--<div class="container">
+  <h1>Add a Project</h1>
+  <form>
+    <div>
+      Name:
+      <input type="text" name="name">
+    </div>
+    <div>
+      Url for the main image:
+      <input type="url" name="ImageUrl">
+    </div>
+    <div>
+      Alternative text for main image:
+      <input type="text" name="AlternativeForImg">
+    </div>
+    <div>
+      Tools used:
+      <input type="checkbox" name="Tools" label="tools">
+    </div>
+    <div>
+      A short description:
+      <input type="text" name="description" label="description">
+    </div>
+    <div>
+      Detailed description:
+      <input type="details" name="details" label="details">
+    </div>
+    <div>
+      Possible extra images:
+      <input type="checkbox" name="extraImgs" label="extraImgs">
+    </div>
+    <div>
+      <input type="submit" label="Add the project">
+    </div>
+  </form>
+
+</div>-->
+
+<div>
+  <div>
+    <h1>Add a Tool</h1>
+    <form [formGroup]="toolForm">
+      <div>
+        Tool:
+        <input class="form-control" formControlName="name">
+        
+      </div>
+      <div>
+        <input type="submit" label="Add the tool" (click)="addNewTool()">
+      </div>
+    </form>
+    <p>{{message}}</p>
+    <p>Form value: {{ toolForm.value | json }}</p>
+    <p>Form status: {{ toolForm.status | json }}</p>
+  </div>
+
+
+  <div>
+    <h3>List of all tools</h3>
+    <ul>
+      <li *ngFor="let tool of usableTools">
+        id: {{tool.id}}: {{tool.name}}
+      </li>
+    </ul>
+  </div>
+</div>

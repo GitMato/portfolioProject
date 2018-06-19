@@ -10,10 +10,10 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
   
   }
 
-  @Directive({
-    selector: '.carousel-item'
-  })
-  export class CarouselItemElement  {
-  
-  
-  }
+@Directive({
+  selector: '.carousel-item'
+})
+export class CarouselItemElement  {
+
+
+}
