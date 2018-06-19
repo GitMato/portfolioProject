@@ -72,6 +72,7 @@ export class ProjectModifyComponent implements OnInit {
     //asp.nettiin http post
   }
 
+  // add a new tool to the db
   addNewTool(){
     this.message = "New tool added."
     //console.log(this.toolForm.value);
@@ -81,6 +82,7 @@ export class ProjectModifyComponent implements OnInit {
     
   }
 
+  // get all tools from the db
   getToolsFromDb(){
     this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools);
   }

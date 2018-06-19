@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
-//import { RequestOptions, request  } from 'https';
 
 interface Tool{
   id: number;
@@ -18,30 +16,31 @@ export class ToolService {
 
   toolAPIURL = "http://localhost:5000/api/tools";
 
-  requestoptions: any;
-  
 
   constructor(private http: HttpClient) { }
 
+  // get all Tools from the db
   getAllTools(): Observable <Tool[]> {
 
     return this.http.get<Tool[]>(this.toolAPIURL);
+
   }
 
+  // add a new tool to the db
   insertTool(name: string) : any {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    var tool: Tool = {id: 10, name: name};  
-
-    console.log(JSON.stringify(tool));
+    // the .subscribe is necessary... 
     this.http.post(this.toolAPIURL, JSON.stringify(name), {headers: headers}).subscribe(r=>{});
 
   }
 
+  // update a specific tool
   updateTool(tool: Tool): Observable<void> {
     return this.http.put<void>(this.toolAPIURL + tool.name, tool);
   }
 
+  // delete a specific tool
   deleteTool(id: number) {
     return this.http.delete(this.toolAPIURL + id);
   }
