@@ -4,8 +4,10 @@ import { Url } from 'url';
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
 
+//import {MatTabsModule} from '@angular/material/tabs';
+
 //form
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 
 interface ProjectInterface{
   name: string;
@@ -37,13 +39,20 @@ export class ProjectModifyComponent implements OnInit {
 
   //name = new FormControl();
 
-  message: string;
+  toolMessage: string;
+  projectMessage: string;
 
   toolForm: FormGroup;
 
   usableTools: Tool[];
 
-  
+  selectedTool: string;
+  toolsInProject: Tool[];
+
+  //toolIdsInProject: number[];
+
+  //projectForm
+  projectForm: FormGroup;
 
   // //ToolForm
   // toolForm = new FormGroup({
@@ -51,14 +60,27 @@ export class ProjectModifyComponent implements OnInit {
   // });
 
   constructor(private toolfb: FormBuilder,
+              private projectfb: FormBuilder,
               private projectService: ProjectService,
               private toolService: ToolService) { 
-    this.createForm();
+    this.toolsInProject = [];
+    this.createForms();
   }
 
-  createForm(){
+  createForms(){
     this.toolForm = this.toolfb.group({
       name: ['', Validators.required],
+    });
+
+    this.projectForm = this.projectfb.group({
+      name: ['', Validators.required],
+      imgUrl: [''],
+      imgAlt: [''],
+      description: ['', Validators.required],
+      tools: [this.toolsInProject],
+      details: [''],
+      extraimg: [''],
+
     });
   }
 
@@ -70,13 +92,18 @@ export class ProjectModifyComponent implements OnInit {
   addNewProject(){
     // TODO
     //asp.nettiin http post
+
+    //this.projectService.insertProject(this.projectForm.value);
+    //this.projectForm.reset();
+    console.log(this.projectForm.value);
   }
 
   // add a new tool to the db
   addNewTool(){
-    this.message = "New tool added."
+    this.toolMessage = "New tool added."
     //console.log(this.toolForm.value);
     this.toolService.insertTool(this.toolForm.value.name);
+    //console.log(this.toolForm.value);
     this.toolForm.reset();
     
     
@@ -85,6 +112,17 @@ export class ProjectModifyComponent implements OnInit {
   // get all tools from the db
   getToolsFromDb(){
     this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools);
+  }
+
+  addToolToProject(){
+    if (this.toolsInProject.find(y => y.name == this.selectedTool)){
+      this.projectMessage = "You've already added that tool!"
+      return;
+    }
+    var tool = this.usableTools.find(x => x.name == this.selectedTool);
+    this.toolsInProject.push(tool);
+    this.projectMessage = "";
+    console.log(this.toolsInProject);
   }
 
 }

@@ -21,7 +21,10 @@ import localeFi from '@angular/common/locales/fi';
 import {MatCardModule, 
         MatSelectModule,
         MatExpansionModule,
-        MatInputModule} from '@angular/material';
+        MatInputModule,
+        MatTabsModule,
+        MatListModule,
+        MatButtonModule } from '@angular/material';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LoginComponent } from './login/login.component';
 import { TestViewComponent } from './test-view/test-view.component';
@@ -54,6 +57,9 @@ registerLocaleData(localeFi, 'fi');
     MatSelectModule,
     MatExpansionModule,
     MatInputModule,
+    MatTabsModule,
+    MatListModule,
+    MatButtonModule,
     HttpClientModule,
     ReactiveFormsModule
   ],
