@@ -92,7 +92,8 @@ export class ProjectModifyComponent implements OnInit {
 
   addNewProject(){
     this.projectService.insertProject(this.projectForm.value);
-    this.projectForm.reset();
+    // TODO: if 200 -> reset
+    //this.projectForm.reset();
   }
 
   // add a new tool to the db

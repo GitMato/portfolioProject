@@ -93,18 +93,18 @@
         </div>
 
         <p>
-          <mat-form-field class="full-width" hintLabel="Max 200 symbols">
+          <mat-form-field class="full-width">
 
-              <textarea matInput name="description" placeholder="A short description" formControlName="description"></textarea>
-    
+              <textarea matInput #description name="description" maxlength="256" placeholder="A short description" matTextareaAutosize matAutosizeMinRows="3" formControlName="description"></textarea>
+              <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
           </mat-form-field>
         </p>
 
         <p>
           <mat-form-field class="full-width">
 
-              <textarea matInput name="details" placeholder="Detailed description" formControlName="details"></textarea>
-    
+              <textarea matInput name="details" #details placeholder="Detailed description" maxlength="512" matTextareaAutosize matAutosizeMinRows="6" formControlName="details"></textarea>
+              <mat-hint align="end">{{details.value.length}} / 512</mat-hint>
           </mat-form-field>
         </p>
 
