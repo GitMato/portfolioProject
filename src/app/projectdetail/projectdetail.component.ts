@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Project } from '../project';
+import { Project, Tool } from '../project';
 import { ProjectService } from '../project.service';
 
 import { ActivatedRoute } from '@angular/router';
@@ -29,24 +29,24 @@ export class ProjectdetailComponent implements OnInit {
   ngOnInit(): void {
 
     this.id = +this.route.snapshot.paramMap.get('id');
-    this.getProjects();
-    //this.getProject();
-    this.project = this.projects[this.id-1];
-    this.projects = [];
+    //this.getProjects();
+    this.getProject();
+    //this.project = this.projects[this.id-1];
+    //this.projects = [];
   }
 
-  getProjects(): void {
-    this.projectService.getProjects().subscribe(projects => this.projects = projects);
-  }
+  // getProjects(): void {
+  //   this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
+  // }
 
 
   // EI TOIMI?! MIKSEI
   getProject(): void {
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    console.log(typeof(id));
-    this.projectService.getProject(id).subscribe(project => this.project = project)
-    console.log(this.project.id, this.project.name)
+    console.log("id: " + id);
+    //console.log(typeof(id));
+    this.projectService.getProject(id).subscribe(project => this.project = project);
+    //console.log(this.project.id, this.project.name);
   }
 
 }

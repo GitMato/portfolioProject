@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 
-import { PROJECTS } from './ProjectEntries';
+//import { PROJECTS } from './ProjectEntries';
 
 import { Observable, of } from 'rxjs';
 
-import { Project } from './project';
+import { Project, Tool } from './project';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 // Tool interface is in multiple places, FIX
-export interface Tool{
-  name: string;
-  id: number;
-}
+// export interface Tool{
+//   name: string;
+//   id: number;
+// }
 
 // Project interface is in multiple places, FIX
-export interface ProjectInter{
-    name: string;
-    imgUrl: string;
-    imgAlt: string;
-    description: string;
-    details: string;
-    tools: Tool[];
-    extraimg: string[];
+// export interface Project{
+//     name: string;
+//     imgUrl: string;
+//     imgAlt: string;
+//     description: string;
+//     details: string;
+//     tools: Tool[];
+//     extraimg: string[];
 
-}
+// }
 
 export interface jsonProject {
-  project: ProjectInter;
+  project: Project;
 }
 
 
@@ -37,17 +37,18 @@ export interface jsonProject {
 })
 export class ProjectService {
 
-  projectAPIURL = "http://localhost:5000/api/projects"; 
+  projectAPIURL = "http://localhost:5000/api/projects/"; 
 
   constructor(private http: HttpClient) { }
 
-  getProjects(): Observable <Project[]>  {
+  // getProjects(): Observable <Project[]>  {
 
-    return of(PROJECTS);
-  }
+  //   return of(PROJECTS);
+  // }
 
   getProject(id: number): Observable<Project> {
-    return of(PROJECTS.find(project => project.id === id));
+    //return of(PROJECTS.find(project => project.id === id));
+    return this.http.get<Project>(this.projectAPIURL + id);
   }
 
 
@@ -61,7 +62,7 @@ export class ProjectService {
   }
 
   // HttpPost - add project to database
-  insertProject(project: ProjectInter): any {
+  insertProject(project: Project): any {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     console.log(project);
