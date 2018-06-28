@@ -38,7 +38,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
   constructor(private projectService: ProjectService, private builder : AnimationBuilder) { }
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe(projects => this.projects = projects);
+    this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
     
     this.carouselItemStyle = {
       width: `${this.itemWidth}px`, height: `${this.itemWidth}px`
