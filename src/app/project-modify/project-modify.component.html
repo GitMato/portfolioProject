@@ -45,6 +45,7 @@
   <mat-tab label="Add a project">
     <div class="example-large-box mat-elevation-z4 input-field">
       <h1>Add a Project</h1>
+      {{projectMessage}}
       <form [formGroup]="projectForm">
 
         <p>
@@ -77,7 +78,7 @@
           </mat-form-field>
 
           <button mat-raised-button (click)="addToolToProject()">Add tool to the project</button>
-          {{projectMessage}}
+          {{projectAddToolMessage}}
 
           <div *ngIf="toolsInProject" name="Tools list">
             <mat-list class="toollist">

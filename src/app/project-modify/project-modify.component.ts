@@ -40,6 +40,7 @@ export class ProjectModifyComponent implements OnInit {
   //name = new FormControl();
 
   toolMessage: string;
+  projectAddToolMessage: string;
   projectMessage: string;
 
   toolForm: FormGroup;
@@ -48,8 +49,6 @@ export class ProjectModifyComponent implements OnInit {
 
   selectedTool: string;
   toolsInProject: Tool[];
-
-  //toolIdsInProject: number[];
 
   //projectForm
   projectForm: FormGroup;
@@ -72,6 +71,8 @@ export class ProjectModifyComponent implements OnInit {
       name: ['', Validators.required],
     });
 
+
+    // todo url validator
     this.projectForm = this.projectfb.group({
       name: ['', Validators.required],
       imgUrl: [''],
@@ -90,23 +91,15 @@ export class ProjectModifyComponent implements OnInit {
   }
 
   addNewProject(){
-    // TODO
-    //asp.nettiin http post
-
-    //this.projectService.insertProject(this.projectForm.value);
-    //this.projectForm.reset();
-    console.log(this.projectForm.value);
+    this.projectService.insertProject(this.projectForm.value);
+    this.projectForm.reset();
   }
 
   // add a new tool to the db
   addNewTool(){
     this.toolMessage = "New tool added."
-    //console.log(this.toolForm.value);
     this.toolService.insertTool(this.toolForm.value.name);
-    //console.log(this.toolForm.value);
     this.toolForm.reset();
-    
-    
   }
 
   // get all tools from the db
@@ -116,13 +109,13 @@ export class ProjectModifyComponent implements OnInit {
 
   addToolToProject(){
     if (this.toolsInProject.find(y => y.name == this.selectedTool)){
-      this.projectMessage = "You've already added that tool!"
+      this.projectAddToolMessage = "You've already added that tool!"
       return;
     }
     var tool = this.usableTools.find(x => x.name == this.selectedTool);
     this.toolsInProject.push(tool);
-    this.projectMessage = "";
-    console.log(this.toolsInProject);
+    this.projectAddToolMessage = "";
+    //console.log(this.toolsInProject);
   }
 
 }

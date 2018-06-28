@@ -32,7 +32,6 @@ export class ToolService {
 
     // the .subscribe is necessary... 
     this.http.post(this.toolAPIURL, JSON.stringify(name), {headers: headers}).subscribe(r=>{});
-
   }
 
   // update a specific tool
