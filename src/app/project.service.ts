@@ -53,7 +53,7 @@ export class ProjectService {
 
   // uutta, nodejs
   getAllProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>('http://localhost:3000/api/projects');
+    return this.http.get<Project[]>(this.projectAPIURL);
   }
 
   getCat(id: number): Observable<Project> {
