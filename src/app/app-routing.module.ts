@@ -42,7 +42,7 @@ const routes: Routes = [
     component: ProjectModifyComponent,
   },
   {
-    path: 'modify/:id',
+    path: 'modify/project/:id',
     component: ProjectModifyComponent,
   },
   // testi

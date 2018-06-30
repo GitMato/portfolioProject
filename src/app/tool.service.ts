@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
+import { Tool } from './project';
+
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
-interface Tool{
-  id: number;
-  name: string;
-}
+// interface Tool{
+//   id: number;
+//   name: string;
+// }
 
 @Injectable({
   providedIn: 'root'
