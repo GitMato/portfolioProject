@@ -1,50 +1,13 @@
 
 <mat-tab-group class="color-light">
 
-  <!-- Add a tool -->
-
-  <mat-tab label="Add a tool">
-    <div class="example-small-box mat-elevation-z4 input-field">
-      
-        <h1>Add a Tool</h1>
-        <form [formGroup]="toolForm">
-          
-          <mat-form-field hintLabel="Required">
-            <input matInput placeholder="Tool" class="form-control" formControlName="name">
-          </mat-form-field>
-          
-          <div>
-            <button mat-raised-button (click)="addNewTool()">Add the tool</button>
-            <!--<button mat-button>Click me!</button>-->
-          </div>
-        </form>
-
-        <div>
-          <p>{{toolMessage}}</p>
-          <p>Form value: {{ toolForm.value | json }}</p>
-          <p>Form status: {{ toolForm.status | json }}</p>
-        </div>
-
-        <mat-list class="toollist">
-          <button mat-raised-button (click)="getToolsFromDb()">Refresh</button>
-          <h3 mat-subheader>List of all tools</h3>
-          <mat-list-item *ngFor="let tool of usableTools">
-            <!--<mat-icon mat-list-icon>folder</mat-icon>-->
-            <h4 mat-line>{{tool.name}}</h4>
-            <p mat-line> id: {{tool.id}} </p>
-          </mat-list-item>
-        </mat-list>
-        
-    </div>
-  </mat-tab>
-
-  <!-- Add a tool ends -->
-
-
   <!--  Add a project -->
-  <mat-tab label="Add a project">
+  <mat-tab label="Add / modify a project">
     <div class="example-large-box mat-elevation-z4 input-field">
-      <h1>Add a Project</h1>
+
+      <h1 *ngIf="!isModify; else modifyBlock">Add a Project</h1>
+      <ng-template #modifyBlock><h1>Modify the project</h1></ng-template>
+
       {{projectMessage}}
       <form [formGroup]="projectForm">
 
@@ -122,5 +85,45 @@
   </mat-tab>
 
   <!--  Add a project ends-->
+
+
+  <!-- Add a tool -->
+
+  <mat-tab label="Add / modify a tool">
+    <div class="example-small-box mat-elevation-z4 input-field">
+      
+        <h1>Add a Tool</h1>
+        <form [formGroup]="toolForm">
+          
+          <mat-form-field hintLabel="Required">
+            <input matInput placeholder="Tool" class="form-control" formControlName="name">
+          </mat-form-field>
+          
+          <div>
+            <button mat-raised-button (click)="addNewTool()">Add the tool</button>
+            <!--<button mat-button>Click me!</button>-->
+          </div>
+        </form>
+
+        <div>
+          <p>{{toolMessage}}</p>
+          <p>Form value: {{ toolForm.value | json }}</p>
+          <p>Form status: {{ toolForm.status | json }}</p>
+        </div>
+
+        <mat-list class="toollist">
+          <button mat-raised-button (click)="getToolsFromDb()">Refresh</button>
+          <h3 mat-subheader>List of all tools</h3>
+          <mat-list-item *ngFor="let tool of usableTools">
+            <!--<mat-icon mat-list-icon>folder</mat-icon>-->
+            <h4 mat-line>{{tool.name}}</h4>
+            <p mat-line> id: {{tool.id}} </p>
+          </mat-list-item>
+        </mat-list>
+        
+    </div>
+  </mat-tab>
+
+  <!-- Add a tool ends -->
 
 </mat-tab-group>
