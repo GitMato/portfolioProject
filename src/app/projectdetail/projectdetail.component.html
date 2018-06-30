@@ -1,16 +1,21 @@
 
 <div *ngIf="project">
+<!-- If logged in-->
+<button mat-raised-button (click)="modifyThisProject()">Modify project</button>
+<button mat-raised-button (click)="deleteThisProject()">Delete project</button>
+<!-- -->
 <img src={{project.imgUrl}} class="centered">
 
 
-<p class="h1">{{project.name}}</p>
+<h1>{{project.name}}</h1>
 
 <p>{{project.details}}</p>
 
 <p class="h1">
-    Tools
+    Tools:
   </p>
 <ul *ngIf="project.tools">
+  test
   <li class="" *ngFor="let tool of project.tools">
     {{tool}}
   </li>

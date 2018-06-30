@@ -4,24 +4,28 @@ import { Url } from 'url';
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
 
+import { ActivatedRoute } from '@angular/router';
+
+import { Project, Tool } from '../project';
+
 //import {MatTabsModule} from '@angular/material/tabs';
 
 //form
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 
-interface ProjectInterface{
-  name: string;
-  url: Url;
-  Alt: string;
-  Tools: Tool[];
-  description: string;
-  details: string;
-  extraImg: Url[];
-}
+// interface ProjectInterface{
+//   name: string;
+//   url: Url;
+//   Alt: string;
+//   Tools: Tool[];
+//   description: string;
+//   details: string;
+//   extraImg: Url[];
+// }
 
-interface Tool{
-  name: string;
-}
+// interface Tool{
+//   name: string;
+// }
 
 
 @Component({
@@ -39,18 +43,25 @@ export class ProjectModifyComponent implements OnInit {
 
   //name = new FormControl();
 
+  // Messages for user
   toolMessage: string;
   projectAddToolMessage: string;
   projectMessage: string;
 
+  // Form for tool
   toolForm: FormGroup;
 
   usableTools: Tool[];
 
   selectedTool: string;
   toolsInProject: Tool[];
+  toolIdsInProject: number[];
 
-  //projectForm
+  // for selecting which project to modify
+  //selectedProject: number;
+  //projects: Project[];
+
+  // Form for project
   projectForm: FormGroup;
 
   // //ToolForm
@@ -58,11 +69,19 @@ export class ProjectModifyComponent implements OnInit {
   //   toolName: new FormControl()
   // });
 
+  // for project modifying
+  projectId: number;
+  isModify: boolean;
+  projectToModify: Project;
+
   constructor(private toolfb: FormBuilder,
               private projectfb: FormBuilder,
               private projectService: ProjectService,
-              private toolService: ToolService) { 
+              private toolService: ToolService,
+              private route: ActivatedRoute) { 
     this.toolsInProject = [];
+    this.toolIdsInProject = [];
+    //this.projectToModify = {name: null, id: null, imgUrl: null, imgAlt: null, description: null, details: null, tools: [], extraimg:null};
     this.createForms();
   }
 
@@ -78,7 +97,7 @@ export class ProjectModifyComponent implements OnInit {
       imgUrl: [''],
       imgAlt: [''],
       description: ['', Validators.required],
-      tools: [this.toolsInProject],
+      tools: [this.toolIdsInProject],
       details: [''],
       extraimg: [''],
 
@@ -88,6 +107,8 @@ export class ProjectModifyComponent implements OnInit {
   ngOnInit() {
     //this.usableTools = this.toolService.getAllTools();
     this.getToolsFromDb();
+    this.checkProjectModify();
+    
   }
 
   addNewProject(){
@@ -115,8 +136,25 @@ export class ProjectModifyComponent implements OnInit {
     }
     var tool = this.usableTools.find(x => x.name == this.selectedTool);
     this.toolsInProject.push(tool);
+    this.toolIdsInProject.push(tool.id);
     this.projectAddToolMessage = "";
     //console.log(this.toolsInProject);
+  }
+
+  checkProjectModify() {
+    this.projectId = +this.route.snapshot.paramMap.get('id');
+    console.log("id: "+this.projectId);
+    if (this.projectId){
+      this.isModify = true;
+      //this.projectService.getProject(this.projectId).subscribe(x => this.projectToModify = x, error => console.log(error));
+
+      this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project);
+      //let projectJson = this.projectService.getProject(this.projectId).subscribe(x => projectJson = x);
+
+      //this.projectToModify = JSON.parse(projectJson);
+      console.log(this.projectToModify);
+    }
+
   }
 
 }
