@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
@@ -10,16 +10,20 @@ import { ProjectService } from '../project.service';
 })
 export class TestViewComponent implements OnInit {
 
+  //@Output() eventClicked = new EventEmitter<Event>();
+  public childOneCounter: number;
 
-
-  projects: Project[];
+  //projects: Project[];
 
 
   constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getAllProjectsC().subscribe(projects => this.projects = projects);
+    //this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
 
   }
 
+  childButtonClicked(counter: number){
+    this.childOneCounter = counter;
+  }
 }

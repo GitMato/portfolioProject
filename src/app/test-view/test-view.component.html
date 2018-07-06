@@ -1,5 +1,6 @@
 
 <h1>Test-view</h1>
+<!--
 <div>
   Talking with the express server:
 </div>
@@ -8,4 +9,24 @@
 </div>
 <div *ngIf="!projects">
   Tyhjä :(
+</div>
+-->
+<!-- https://angular.io/guide/component-interaction -->
+<div>
+  <p><b>Child1:</b></p>
+  <app-test-view-child (buttonClicked)="childButtonClicked($event)"></app-test-view-child>
+</div>
+
+<div>
+  <p>
+    <b>Parent</b>
+  </p>
+<p>
+Child1 on lähettänyt arvon {{ childOneCounter }}.
+</p>
+</div>
+
+<div>
+  <p><b>Child2:</b></p>
+<app-test-view-child2 [counter]="childOneCounter"></app-test-view-child2>
 </div>
