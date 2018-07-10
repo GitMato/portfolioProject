@@ -18,7 +18,10 @@ export interface Token{
 })
 export class AuthService {
 
-  isLoggedIn: boolean = false;
+  //isLoggedIn: boolean = false;
+
+  // This is unsecure.
+  isLoggedIn: boolean = !!localStorage.getItem('auth_token');
 
   // for storing the url where to redirect after logging in
   redirectUrl: string;
