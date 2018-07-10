@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 //test
 import { Title }     from '@angular/platform-browser';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,13 @@ export class AppComponent {
   title = 'app';
 
   // Set the title
-  public constructor(private titleService: Title ) { }
+  public constructor(private titleService: Title,
+                     private authService: AuthService ) { }
  
   public setTitle( newTitle: string) {
     this.titleService.setTitle( newTitle );
   }
+
+
 
 }

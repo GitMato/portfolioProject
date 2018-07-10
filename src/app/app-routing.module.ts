@@ -5,11 +5,15 @@ import { AboutComponent } from './about/about.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjectdetailComponent } from './projectdetail/projectdetail.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
 import { ProjectModifyComponent } from './project-modify/project-modify.component';
 
 //testing
 import {TestViewComponent} from './test-view/test-view.component';
+import { RegisterComponent } from './Auth/register/register.component';
+
+//AuthGuard
+import { AuthGuard } from './auth-guard.service';
 
 
 const routes: Routes = [
@@ -38,12 +42,18 @@ const routes: Routes = [
 
   },
   {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {
     path: 'modify',
     component: ProjectModifyComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'modify/project/:id',
     component: ProjectModifyComponent,
+    canActivate: [AuthGuard],
   },
   // testi
   {

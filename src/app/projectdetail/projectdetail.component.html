@@ -1,8 +1,8 @@
 
 <div *ngIf="project">
 <!-- If logged in-->
-<button mat-raised-button (click)="modifyThisProject()">Modify project</button>
-<button mat-raised-button (click)="deleteThisProject()">Delete project</button>
+<button mat-raised-button (click)="modifyThisProject()" *ngIf="authService.isLoggedIn">Modify project</button>
+<button mat-raised-button (click)="deleteThisProject()" *ngIf="authService.isLoggedIn">Delete project</button>
 <!-- -->
 <img src={{project.imgUrl}} class="centered">
 
@@ -15,9 +15,8 @@
     Tools:
   </p>
 <ul *ngIf="project.tools">
-  test
   <li class="" *ngFor="let tool of project.tools">
-    {{tool}}
+    id: {{tool}}
   </li>
 </ul>
 

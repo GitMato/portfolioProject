@@ -26,9 +26,13 @@ import {MatCardModule,
         MatListModule,
         MatButtonModule } from '@angular/material';
 import { CarouselComponent } from './carousel/carousel.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './Auth/login/login.component';
+import { RegisterComponent } from './Auth/register/register.component';
 import { TestViewComponent } from './test-view/test-view.component';
 import { ProjectModifyComponent } from './project-modify/project-modify.component';
+import { TestViewChildComponent } from './test-view-child/test-view-child.component';
+import { TestViewChild2Component } from './test-view-child2/test-view-child2.component';
+
 
 
 
@@ -45,8 +49,12 @@ registerLocaleData(localeFi, 'fi');
     PagenotfoundComponent,
     CarouselComponent,
     LoginComponent,
+    RegisterComponent,
     TestViewComponent,
-    ProjectModifyComponent
+    ProjectModifyComponent,
+    TestViewChildComponent,
+    TestViewChild2Component,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
