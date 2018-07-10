@@ -29,7 +29,7 @@
       <li class="navigation-item"><a routerLink="projects" (click)="setTitle('My Projects')">My Projects</a></li>
       <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
       <li class="navigation-item align-right" *ngIf="authService.isLoggedIn"><a routerLink="modify">Modify</a></li>
-      <li class="navigation-item align-right" *ngIf="authService.isLoggedIn"><a routerLink="" (click)="authService.isLoggedIn = false;">Logout</a></li>
+      <li class="navigation-item align-right" *ngIf="authService.isLoggedIn"><a routerLink="" (click)="logOut()">Logout</a></li>
       <li class="navigation-item align-right" *ngIf="!authService.isLoggedIn"><a routerLink="login">Login</a></li>
     </ul>
   </nav>

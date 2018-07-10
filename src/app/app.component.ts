@@ -20,6 +20,9 @@ export class AppComponent {
     this.titleService.setTitle( newTitle );
   }
 
-
+  logOut(){
+    this.authService.isLoggedIn = false;
+    localStorage.removeItem('auth_token');
+  }
 
 }
