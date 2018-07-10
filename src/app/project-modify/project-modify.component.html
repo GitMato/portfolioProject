@@ -6,7 +6,7 @@
     <div class="example-large-box mat-elevation-z4 input-field">
 
       <h1 *ngIf="!isModify; else modifyBlock">Add a Project</h1>
-      <ng-template #modifyBlock><h1>Modify the project</h1></ng-template>
+      <ng-template #modifyBlock><h1>Modify the project "{{projectToModify?.name}}"</h1></ng-template>
 
       {{projectMessage}}
       <form [formGroup]="projectForm">

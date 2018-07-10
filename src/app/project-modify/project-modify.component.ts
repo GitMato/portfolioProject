@@ -81,6 +81,8 @@ export class ProjectModifyComponent implements OnInit {
               private route: ActivatedRoute) { 
     this.toolsInProject = [];
     this.toolIdsInProject = [];
+
+    //wat
     //this.projectToModify = {name: null, id: null, imgUrl: null, imgAlt: null, description: null, details: null, tools: [], extraimg:null};
     this.createForms();
   }
@@ -112,21 +114,25 @@ export class ProjectModifyComponent implements OnInit {
   }
 
   addNewProject(){
-    this.projectService.insertProject(this.projectForm.value);
+    this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
+                                                                        error => console.log(error), 
+                                                                        () => console.log("New project created!"));
     // TODO: if 200 -> reset
     //this.projectForm.reset();
   }
 
   // add a new tool to the db
-  addNewTool(){
+  async addNewTool(){
     this.toolMessage = "New tool added."
-    this.toolService.insertTool(this.toolForm.value.name);
-    this.toolForm.reset();
+    await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},error => console.log(error), () => this.getToolsFromDb());
+    //this.toolForm.reset();
   }
 
   // get all tools from the db
-  getToolsFromDb(){
-    this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools);
+  async getToolsFromDb(){
+    await this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools, 
+                                            error => console.log(error),
+                                            () => {});
   }
 
   addToolToProject(){
@@ -148,13 +154,36 @@ export class ProjectModifyComponent implements OnInit {
       this.isModify = true;
       //this.projectService.getProject(this.projectId).subscribe(x => this.projectToModify = x, error => console.log(error));
 
-      this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project);
-      //let projectJson = this.projectService.getProject(this.projectId).subscribe(x => projectJson = x);
+      // get project from db
+      this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project,
+                                                                error => console.log(error),
+                                                                () => this.setFormValues(this.projectToModify)
+                                                                );
 
-      //this.projectToModify = JSON.parse(projectJson);
-      console.log(this.projectToModify);
+      //console.log(this.projectToModify);
+      //this.setFormValues();
     }
-
   }
+
+  setFormValues(project: Project){
+    //this.projectForm.setValue(this.projectToModify);
+
+    this.projectForm.patchValue({
+      name: project.name,
+      imgUrl: project.imgUrl,
+      imgAlt: project.imgAlt,
+      description: project.description,
+      tools: "",
+      details: project.details,
+      extraimg: project.extraimg,
+      });
+
+    //useless
+    //this.projectForm.patchValue({name: "wat"});
+
+    
+  }
+
+  
 
 }
