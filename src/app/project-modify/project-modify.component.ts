@@ -8,25 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { Project, Tool } from '../project';
 
-//import {MatTabsModule} from '@angular/material/tabs';
-
-//form
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-
-// interface ProjectInterface{
-//   name: string;
-//   url: Url;
-//   Alt: string;
-//   Tools: Tool[];
-//   description: string;
-//   details: string;
-//   extraImg: Url[];
-// }
-
-// interface Tool{
-//   name: string;
-// }
-
 
 @Component({
   selector: 'app-project-modify',
@@ -116,7 +98,10 @@ export class ProjectModifyComponent implements OnInit {
   addNewProject(){
     this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
                                                                         error => console.log(error), 
-                                                                        () => console.log("New project created!"));
+                                                                        () => {
+                                                                          console.log("New project created!");
+                                                                          this.projectForm.reset();
+                                                                          });
     // TODO: if 200 -> reset
     //this.projectForm.reset();
   }
@@ -124,7 +109,12 @@ export class ProjectModifyComponent implements OnInit {
   // add a new tool to the db
   async addNewTool(){
     this.toolMessage = "New tool added."
-    await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},error => console.log(error), () => this.getToolsFromDb());
+    await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},
+                                                                    error => console.log(error), 
+                                                                    () => {
+                                                                      this.getToolsFromDb();
+                                                                      this.toolForm.reset();
+                                                                      });
     //this.toolForm.reset();
   }
 
@@ -184,6 +174,15 @@ export class ProjectModifyComponent implements OnInit {
     
   }
 
+  updateExistingProject(){
+    this.projectService.updateProject(this.projectToModify.id, this.projectForm.value)
+    .subscribe(() => {},
+              error => console.log(error), 
+              () => {
+                console.log("Project updated!");
+                });
+                                                                          
+  }
   
 
 }

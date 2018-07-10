@@ -77,7 +77,8 @@
         </div>
 
         <div>
-          <button mat-raised-button (click)="addNewProject()">Add the project</button>
+          <button mat-raised-button *ngIf="!isModify; else modifyBlockButton" (click)="addNewProject()">Add the project</button>
+          <ng-template #modifyBlockButton><button mat-raised-button (click)="updateExistingProject()">Update the project</button></ng-template>
         </div>
 
       </form>
