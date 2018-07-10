@@ -1,0 +1,29 @@
+<p>
+  register works!
+</p>
+
+
+<div class="color-light">
+
+    <form [formGroup]="registerForm">
+      <div>
+        <mat-form-field hintLabel="Required">
+            <input matInput placeholder="Username" class="form-control" formControlName="username">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field hintLabel="Required">
+            <input matInput placeholder="Password" class="form-control" formControlName="password1">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field hintLabel="Required">
+            <input matInput placeholder="Confirm password" class="form-control" formControlName="password2">
+        </mat-form-field>
+      </div>
+      <div>
+          <button mat-raised-button type="submit" (click)="registerNewUser()">Register</button>
+      </div>
+    </form>
+</div>
+
