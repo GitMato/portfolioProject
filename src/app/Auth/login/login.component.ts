@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
                     () => { this.router.navigate(['modify']);
                             this.authService.isLoggedIn = true;}
                           );
+
+    
     //console.log(JwtToken);
     //debugger;
   }
