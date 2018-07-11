@@ -19,7 +19,8 @@ export interface Project{
   imgAlt: string;
   description: string;
   details: string;
-  tools: Tool[];
+  //tools: Tool[];
+  tools: number[];
   extraimg: string[];
 
 }

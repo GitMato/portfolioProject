@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Project, Tool } from '../project';
 
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-project-modify',
@@ -130,14 +131,26 @@ export class ProjectModifyComponent implements OnInit {
       this.projectAddToolMessage = "You've already added that tool!"
       return;
     }
-    var tool = this.usableTools.find(x => x.name == this.selectedTool);
+    let tool = this.usableTools.find(x => x.name == this.selectedTool);
     this.toolsInProject.push(tool);
     this.toolIdsInProject.push(tool.id);
     this.projectAddToolMessage = "";
     //console.log(this.toolsInProject);
   }
 
-  checkProjectModify() {
+  removeToolFromProject(tool: Tool){
+    
+    //find tool from ToolsInProject and ToolIdsInProject arrays
+    let index:number = this.toolsInProject.indexOf(tool,0);
+
+    // if index is found
+    if (index > -1){
+      this.toolsInProject.splice(index, 1);
+      this.toolIdsInProject.splice(index, 1);
+    }
+  }
+
+  async checkProjectModify() {
     this.projectId = +this.route.snapshot.paramMap.get('id');
     console.log("id: "+this.projectId);
     if (this.projectId){
@@ -145,7 +158,7 @@ export class ProjectModifyComponent implements OnInit {
       //this.projectService.getProject(this.projectId).subscribe(x => this.projectToModify = x, error => console.log(error));
 
       // get project from db
-      this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project,
+      await this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project,
                                                                 error => console.log(error),
                                                                 () => this.setFormValues(this.projectToModify)
                                                                 );
@@ -157,19 +170,33 @@ export class ProjectModifyComponent implements OnInit {
 
   setFormValues(project: Project){
     //this.projectForm.setValue(this.projectToModify);
+    
+    // set the tools from existing project.
+    // toolsInProject visible to user, toolIdsInProject is sent to backend.
+    // project.tools contains Tool -class objects (backend tools contains only ids).
+    
+
+    for (let toolId of project.tools){
+      console.log(toolId);
+      this.toolIdsInProject.push(toolId);
+
+      let tool: Tool = this.usableTools.find(y => y.id == toolId);
+      if (tool != undefined){
+        this.toolsInProject.push(tool);
+      }
+    }
 
     this.projectForm.patchValue({
       name: project.name,
       imgUrl: project.imgUrl,
       imgAlt: project.imgAlt,
       description: project.description,
-      tools: "",
+      tools: this.toolIdsInProject,
       details: project.details,
       extraimg: project.extraimg,
       });
 
-    //useless
-    //this.projectForm.patchValue({name: "wat"});
+      
 
     
   }

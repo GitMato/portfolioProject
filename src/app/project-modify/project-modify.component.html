@@ -49,7 +49,7 @@
               <mat-list-item *ngFor="let tool of toolsInProject; let index = index;" >
                 <!--<mat-icon mat-list-icon>folder</mat-icon>-->
                 <h4 mat-line>{{tool.name}}</h4>
-                <p mat-line> id: {{tool.id}} </p>
+                <p mat-line> id: {{tool.id}} </p><button mat-raised-button class="small-button" (click)="removeToolFromProject(tool)">Remove</button>
               </mat-list-item>
             </mat-list>
           </div>
