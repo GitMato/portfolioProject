@@ -20,13 +20,17 @@ export class ProjectService {
   projectAPIURL = "http://localhost:5000/api/projects/"; 
 
   // tämä sama project servicessa sekä toolservicessä
-  headers = new HttpHeaders().set('Content-Type', 'application/json')
-                            .append('Authorization', "Bearer " + localStorage.getItem('auth_token')
-                            .substring(1, localStorage.getItem('auth_token').length-1)
-                          );
+  // headers = new HttpHeaders().set('Content-Type', 'application/json')
+  //                           .append('Authorization', "Bearer " + localStorage.getItem('auth_token')
+  //                           .substring(1, localStorage.getItem('auth_token').length-1)
+  //                         );
+  //headers = 
+  headers: HttpHeaders;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.updateHeader();
+  }
 
 
   getProject(id: number): Observable<Project> {
@@ -40,7 +44,7 @@ export class ProjectService {
   // HttpPost - add project to database
   insertProject(project: Project): Observable<void> {
     //const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
+    this.updateHeader();
     console.log(JSON.stringify(project));
     return this.http.post<void>(this.projectAPIURL, JSON.stringify(project), { headers: this.headers });
     
@@ -55,11 +59,27 @@ export class ProjectService {
   // }
 
   updateProject(id: number, project: Project): Observable<void> {
+    this.updateHeader();
     return this.http.put<void>(this.projectAPIURL + id, JSON.stringify(project), {headers: this.headers});
   }
 
   deleteProject(id: number) {
+    this.updateHeader();
     return this.http.delete(this.projectAPIURL + id, { headers: this.headers});
+  }
+
+  updateHeader(): void{
+
+    if (localStorage.getItem('auth_token')){
+      this.headers = new HttpHeaders().set('Content-Type', 'application/json')
+                              .append('Authorization', "Bearer " + localStorage.getItem('auth_token')
+                              .substring(1, localStorage.getItem('auth_token').length-1)
+      )
+    } 
+    else {
+      this.headers = new HttpHeaders().set('Content-Type', 'application/json');
+    }
+    
   }
 
 }
