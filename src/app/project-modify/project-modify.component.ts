@@ -4,7 +4,7 @@ import { Url } from 'url';
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Project, Tool } from '../project';
 
@@ -34,7 +34,7 @@ export class ProjectModifyComponent implements OnInit {
   // Form for tool
   toolForm: FormGroup;
 
-  usableTools: Tool[];
+  usableTools: Tool[] = [];
 
   selectedTool: string;
   toolsInProject: Tool[];
@@ -56,12 +56,14 @@ export class ProjectModifyComponent implements OnInit {
   projectId: number;
   isModify: boolean;
   projectToModify: Project;
+  toolToModify: Tool;
 
   constructor(private toolfb: FormBuilder,
               private projectfb: FormBuilder,
               private projectService: ProjectService,
               private toolService: ToolService,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute,
+              private router: Router) { 
     this.toolsInProject = [];
     this.toolIdsInProject = [];
 
@@ -160,7 +162,7 @@ export class ProjectModifyComponent implements OnInit {
       // get project from db
       await this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project,
                                                                 error => console.log(error),
-                                                                () => this.setFormValues(this.projectToModify)
+                                                                () => this.setProjectFormValues(this.projectToModify)
                                                                 );
 
       //console.log(this.projectToModify);
@@ -168,7 +170,7 @@ export class ProjectModifyComponent implements OnInit {
     }
   }
 
-  setFormValues(project: Project){
+  setProjectFormValues(project: Project){
     //this.projectForm.setValue(this.projectToModify);
     
     // set the tools from existing project.
@@ -207,8 +209,31 @@ export class ProjectModifyComponent implements OnInit {
               error => console.log(error), 
               () => {
                 console.log("Project updated!");
+                this.router.navigate(['/projects/'+this.projectToModify.id]);
                 });
                                                                           
+  }
+
+  setToolFormValue(tool: Tool){
+    this.toolToModify = tool;
+    this.toolForm.patchValue({
+      name: tool.name
+      });
+  }
+
+  updateExistingTool(){
+    this.toolService.updateTool(this.toolToModify.id, this.toolForm.value).subscribe(() => {},
+                                                                  error => console.log(error), 
+                                                                  () => {
+                                                                    console.log("Tool updated!");
+                                                                    this.getToolsFromDb();
+                                                                  }
+                                                                  );
+  }
+
+  resetToolForm(){
+    this.toolForm.reset();
+    this.toolToModify = null;
   }
   
 

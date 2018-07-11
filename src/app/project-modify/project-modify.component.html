@@ -101,7 +101,12 @@
           </mat-form-field>
           
           <div>
-            <button mat-raised-button (click)="addNewTool()">Add the tool</button>
+            <button *ngIf="!toolToModify; else modifyToolButton" mat-raised-button (click)="addNewTool()">Add the tool</button>
+            <ng-template #modifyToolButton>
+              <button mat-raised-button (click)="updateExistingTool()">Update the tool</button>
+              <button mat-raised-button (click)="resetToolForm()">Reset the form</button>
+            
+            </ng-template>
             <!--<button mat-button>Click me!</button>-->
           </div>
         </form>
@@ -118,7 +123,7 @@
           <mat-list-item *ngFor="let tool of usableTools">
             <!--<mat-icon mat-list-icon>folder</mat-icon>-->
             <h4 mat-line>{{tool.name}}</h4>
-            <p mat-line> id: {{tool.id}} </p>
+            <p mat-line> id: {{tool.id}} </p><button mat-raised-button class="small-button" (click)="setToolFormValue(tool)">modify</button>
           </mat-list-item>
         </mat-list>
         
