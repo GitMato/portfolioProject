@@ -11,12 +11,11 @@
 
 <p>{{project.details}}</p>
 
-<p class="h1">
-    Tools:
-  </p>
+
+<h4>Tools:</h4>
 <ul *ngIf="project.tools">
-  <li class="" *ngFor="let tool of project.tools">
-    id: {{tool}}
+  <li class="" *ngFor="let tool of toolsUsed">
+    {{tool.name}}
   </li>
 </ul>
 

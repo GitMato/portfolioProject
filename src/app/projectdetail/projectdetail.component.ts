@@ -18,11 +18,13 @@ import { AuthService } from '../auth.service';
 })
 export class ProjectdetailComponent implements OnInit {
 
+
   project: Project;
 
   //projects: Project[];
   projectId: number;
-  toolsUsed: Observable<Tool>[];
+  toolsAvailable: Tool[] = [];
+  toolsUsed: Tool[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -39,10 +41,11 @@ export class ProjectdetailComponent implements OnInit {
 
     //this.id = +this.route.snapshot.paramMap.get('id');
     //this.getProjects();
-    this.getProject();
+    this.getAllTools().then(() => this.getProject());
+    //this.getProject();
     //this.project = this.projects[this.id-1];
     //this.projects = [];
-    this.getToolsForProject();
+    //this.getToolsForProject();
   }
 
   // getProjects(): void {
@@ -53,23 +56,31 @@ export class ProjectdetailComponent implements OnInit {
   
   getProject(): void {
     this.projectId = +this.route.snapshot.paramMap.get('id');
-    console.log("id: " + this.projectId);
+    console.log("Project id from address: " + this.projectId);
     //console.log(typeof(id));
     this.projectService.getProject(this.projectId).subscribe(project => this.project = project,
-                                                            error => (console.log(error)),
-                                                            (() => (console.log(this.project)))
+                                                            error => console.log(error),
+                                                            () => this.findToolsForProject()
                                                             );
     //console.log(this.project.id, this.project.name);
     //console.log(this.project);
   }
 
-  getToolsForProject() {
-    // for (let tool of this.project.tools){
-    //   this.toolsUsed.push(this.toolService.getTool(tool.id));
-    // }
-    //let allTools = this.toolService.getAllTools().subscribe(x => allTools = x);
-    
-    //TODO
+  async getAllTools(){
+    await this.toolService.getAllTools().subscribe(result => this.toolsAvailable = result,
+                                            error => console.log(error), () => {} );
+  }
+
+
+  findToolsForProject() {
+    let tool: Tool;
+    for (let toolId of this.project.tools){
+      tool = this.toolsAvailable.find(x => x.id == toolId);
+      if (tool != undefined){
+        console.log(tool.name + tool.id);
+        this.toolsUsed.push(tool);
+      }
+    }
   }
 
 
