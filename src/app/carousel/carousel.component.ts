@@ -31,14 +31,18 @@ export class CarouselComponent implements AfterViewInit, OnInit {
   private itemWidth : number = 500;
   private currentSlide: number = 0;
 
-  projects: Project[];
+  //projects: Project[];
 
   private carouselInterval = interval(5000);
 
   constructor(private projectService: ProjectService, private builder : AnimationBuilder) { }
 
-  ngOnInit() {
-    this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
+  async ngOnInit() {
+    //this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
+    
+    if (this.projectService.allProjects.length == 0){
+      await this.projectService.updateAllProjectsVar();
+    }
     
     this.carouselItemStyle = {
       width: `${this.itemWidth}px`, height: `${this.itemWidth}px`
@@ -78,12 +82,12 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     
     //if( this.currentSlide + 1 === this.projects.length ) return;
     //if( this.currentSlide + 1 === this.items.length ) return;
-    if( this.currentSlide + 1 === this.projects.length ){
+    if( this.currentSlide + 1 === this.projectService.allProjects.length ){
       this.currentSlide = -1;
     }
 
     // this.items.length
-    this.currentSlide = (this.currentSlide + 1) % this.projects.length;
+    this.currentSlide = (this.currentSlide + 1) % this.projectService.allProjects.length;
 
     const offset = this.currentSlide * this.itemWidth;
     
@@ -102,12 +106,12 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     
     //if( this.currentSlide === 0 ) return;
     if( this.currentSlide === 0 ){
-      this.currentSlide = this.projects.length;
+      this.currentSlide = this.projectService.allProjects.length;
     }
  
     //this.currentSlide = ((this.currentSlide - 1) + this.items.length) % this.items.length;
 
-    this.currentSlide = ((this.currentSlide - 1) + this.projects.length) % this.projects.length;
+    this.currentSlide = ((this.currentSlide - 1) + this.projectService.allProjects.length) % this.projectService.allProjects.length;
     const offset = this.currentSlide * this.itemWidth;
 
     const myAnimation : AnimationFactory = this.builder.build([

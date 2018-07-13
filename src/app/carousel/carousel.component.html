@@ -2,7 +2,7 @@
 <button (click)="prev()" class="prev-btn">Previous</button>
 <section class="carousel-wrapper  centered" [ngStyle]="carouselWrapperStyle">
   <ul class="carousel-inner" #carousel>
-    <div *ngFor="let project of projects;">
+    <div *ngFor="let project of projectService.allProjects;">
       <li class="carousel-item" [ngStyle]="carouselItemStyle">
         <!--<ng-container [ngTemplateOutlet]="project.tpl">-->
 
@@ -46,7 +46,7 @@
 
 <!-- Circles which indicates the steps of the carousel -->
 <div style="text-align:center;margin-top:40px;" >
-  <span class="step" *ngFor="let project of projects; let i = index;" [attr.id] ="i" [ngClass]="{'active': isCurrentSlide(i)}"></span>
+  <span class="step" *ngFor="let project of projectService.allProjects; let i = index;" [attr.id] ="i" [ngClass]="{'active': isCurrentSlide(i)}"></span>
 </div>
 <!-- 
 <div class="centered">
