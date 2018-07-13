@@ -40,16 +40,18 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state, a
 
 export class ProjectListComponent implements OnInit {
   
-  projects: Project[] = [];
+  //projects: Project[] = [];
   
   
   constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectService) {
     //this.route.params.subscribe(res => console.log(res.id));
    }
 
-  ngOnInit() {
+  async ngOnInit() {
     //this.getProjects();
-    this.projectService.updateAllProjectsVar();
+    if (this.projectService.allProjects.length == 0){
+      await this.projectService.updateAllProjectsVar();
+    }
   }
 
   goToProject() {
