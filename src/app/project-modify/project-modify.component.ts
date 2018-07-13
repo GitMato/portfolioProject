@@ -29,8 +29,8 @@ export class ProjectModifyComponent implements OnInit {
   //usableTools: Tool[] = [];
 
   selectedTool: string;
-  toolsInProject: Tool[];
-  toolIdsInProject: number[];
+  toolsInProject: Tool[] = [];
+  toolIdsInProject: number[] = [];
 
   // Form for project
   projectForm: FormGroup;
@@ -46,8 +46,8 @@ export class ProjectModifyComponent implements OnInit {
               private toolService: ToolService,
               private route: ActivatedRoute,
               private router: Router) { 
-    this.toolsInProject = [];
-    this.toolIdsInProject = [];
+    //this.toolsInProject = [];
+    //this.toolIdsInProject = [];
 
     this.createForms();
   }
@@ -84,13 +84,16 @@ export class ProjectModifyComponent implements OnInit {
     
   }
 
-  addNewProject(){
-    this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
+  async addNewProject(){
+    await this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
                                                                         error => console.log(error), 
                                                                         () => {
                                                                           console.log("New project created!");
+                                                                          this.projectService.updateAllProjectsVar();
                                                                           this.projectForm.reset();
+                                                                          this.resetToolsInProject();
                                                                           });
+    
   }
 
   // add a new tool to the db
@@ -103,6 +106,14 @@ export class ProjectModifyComponent implements OnInit {
                                                                       this.toolService.updateAllToolsVar();
                                                                       this.toolForm.reset();
                                                                       });
+  }
+
+
+  //TODO: bugi: jos lisää toisen projektin putkeen, työkaluja ei lähetetä
+  resetToolsInProject(){
+    this.toolsInProject = [];
+    this.toolIdsInProject = [];
+    this.selectedTool = "";
   }
 
   // get all tools from the db
@@ -122,7 +133,7 @@ export class ProjectModifyComponent implements OnInit {
     this.toolsInProject.push(tool);
     this.toolIdsInProject.push(tool.id);
     this.projectAddToolMessage = "";
-    //console.log(this.toolsInProject);
+    console.log(this.toolIdsInProject);
   }
 
   removeToolFromProject(tool: Tool){

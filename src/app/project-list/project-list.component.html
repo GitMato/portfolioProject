@@ -10,7 +10,8 @@
       <!--<a href="projects"  (click)="goToProject()">-->
         <mat-card class="project-card color-light flex">
 
-          <img mat-card-lg-image class="project-pic" [src]="project.imgUrl" [alt]="project.imgAlt">
+          <img mat-card-lg-image class="project-pic" [src]="project.imgUrl" [alt]="project.imgAlt" *ngIf="project.imgUrl">
+          <img mat-card-lg-image class="project-pic" [alt]="project.imgAlt" *ngIf="!project.imgUrl"> <!-- insert placeholder pic if pic not provided -->
           <mat-card-header class="project-header">
               <!--<div mat-card-avatar class="example-header-image"></div>-->
               <mat-card-title class="h1">{{project.name}}</mat-card-title>
