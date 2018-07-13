@@ -17,6 +17,8 @@ export interface jsonProject {
 })
 export class ProjectService {
 
+  allProjects: Project[] = [];
+
   projectAPIURL = "http://localhost:5000/api/projects/"; 
 
   // tämä sama project servicessa sekä toolservicessä
@@ -80,6 +82,11 @@ export class ProjectService {
       this.headers = new HttpHeaders().set('Content-Type', 'application/json');
     }
     
+  }
+
+  updateAllProjectsVar(){
+    this.getAllProjects().subscribe(response => this.allProjects = response, 
+                                    error => console.log(error));
   }
 
 }
