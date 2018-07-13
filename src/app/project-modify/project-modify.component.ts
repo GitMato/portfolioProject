@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Url } from 'url';
 
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
@@ -9,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Project, Tool } from '../project';
 
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-project-modify',
@@ -28,7 +26,7 @@ export class ProjectModifyComponent implements OnInit {
   // Form for tool
   toolForm: FormGroup;
 
-  usableTools: Tool[] = [];
+  //usableTools: Tool[] = [];
 
   selectedTool: string;
   toolsInProject: Tool[];
@@ -76,7 +74,9 @@ export class ProjectModifyComponent implements OnInit {
 
   ngOnInit() {
     //this.usableTools = this.toolService.getAllTools();
-    this.getToolsFromDb();
+    //this.getToolsFromDb();
+    this.toolService.updateAllToolsVar();
+
     this.checkProjectModify();
     
   }
@@ -96,24 +96,26 @@ export class ProjectModifyComponent implements OnInit {
     await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},
                                                                     error => console.log(error), 
                                                                     () => {
-                                                                      this.getToolsFromDb();
+                                                                      //this.getToolsFromDb();
+                                                                      this.toolService.updateAllToolsVar();
                                                                       this.toolForm.reset();
                                                                       });
   }
 
   // get all tools from the db
-  async getToolsFromDb(){
-    await this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools, 
-                                            error => console.log(error),
-                                            () => {});
-  }
+  // async getToolsFromDb(){
+  //   await this.toolService.getAllTools().subscribe(usableTools => this.usableTools = usableTools, 
+  //                                           error => console.log(error),
+  //                                           () => {});
+  // }
 
   addToolToProject(){
     if (this.toolsInProject.find(y => y.name == this.selectedTool)){
       this.projectAddToolMessage = "You've already added that tool!"
       return;
     }
-    let tool = this.usableTools.find(x => x.name == this.selectedTool);
+    let tool = this.toolService.allTools.find(x => x.name == this.selectedTool);
+    //let tool = this.usableTools.find(x => x.name == this.selectedTool);
     this.toolsInProject.push(tool);
     this.toolIdsInProject.push(tool.id);
     this.projectAddToolMessage = "";
@@ -160,7 +162,8 @@ export class ProjectModifyComponent implements OnInit {
       console.log(toolId);
       this.toolIdsInProject.push(toolId);
 
-      let tool: Tool = this.usableTools.find(y => y.id == toolId);
+      let tool: Tool = this.toolService.allTools.find(y => y.id == toolId);
+      //let tool: Tool = this.usableTools.find(y => y.id == toolId);
       if (tool != undefined){
         this.toolsInProject.push(tool);
       }
@@ -204,7 +207,8 @@ export class ProjectModifyComponent implements OnInit {
                                                                   error => console.log(error), 
                                                                   () => {
                                                                     console.log("Tool updated!");
-                                                                    this.getToolsFromDb();
+                                                                    //this.getToolsFromDb();
+                                                                    this.toolService.updateAllToolsVar();
                                                                   }
                                                                   );
   }
