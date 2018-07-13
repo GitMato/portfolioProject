@@ -100,8 +100,10 @@ export class ProjectdetailComponent implements OnInit {
     if (confirm("Do you really want to delete this project?")){
       this.projectService.deleteProject(this.projectId).subscribe(()=>{},
                                         error => (console.log(error)), 
-                                        () => { this.router.navigate(['/projects/'])
-                                                console.log("The project has been deleted.")}
+                                        () => { 
+                                                this.projectService.updateAllProjectsVar();
+                                                this.router.navigate(['/projects/']);
+                                                console.log("The project has been deleted.");}
                                         );
       //this.router.navigate(['/projects/']);
     }
