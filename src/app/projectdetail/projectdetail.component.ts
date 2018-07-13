@@ -23,7 +23,7 @@ export class ProjectdetailComponent implements OnInit {
 
   //projects: Project[];
   projectId: number;
-  toolsAvailable: Tool[] = [];
+  //toolsAvailable: Tool[] = [];
   toolsUsed: Tool[] = [];
 
   constructor(
@@ -41,7 +41,10 @@ export class ProjectdetailComponent implements OnInit {
 
     //this.id = +this.route.snapshot.paramMap.get('id');
     //this.getProjects();
-    this.getAllTools().then(() => this.getProject());
+
+    //this.getAllTools().then(() => this.getProject());
+    this.toolService.updateAllToolsVar().then(() => this.getProject(), rejectedReason => console.log(rejectedReason));
+
     //this.getProject();
     //this.project = this.projects[this.id-1];
     //this.projects = [];
@@ -66,16 +69,16 @@ export class ProjectdetailComponent implements OnInit {
     //console.log(this.project);
   }
 
-  async getAllTools(){
-    await this.toolService.getAllTools().subscribe(result => this.toolsAvailable = result,
-                                            error => console.log(error), () => {} );
-  }
+  // async getAllTools(){
+  //   await this.toolService.getAllTools().subscribe(result => this.toolsAvailable = result,
+  //                                           error => console.log(error), () => {} );
+  // }
 
 
   findToolsForProject() {
     let tool: Tool;
     for (let toolId of this.project.tools){
-      tool = this.toolsAvailable.find(x => x.id == toolId);
+      tool = this.toolService.allTools.find(x => x.id == toolId);
       if (tool != undefined){
         console.log(tool.name + tool.id);
         this.toolsUsed.push(tool);
@@ -102,5 +105,6 @@ export class ProjectdetailComponent implements OnInit {
     //this.projectService.deleteProject(this.projectId);
     //this.router.navigate(['/projects/']);
   }
+
 
 }
