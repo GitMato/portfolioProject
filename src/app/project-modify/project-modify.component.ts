@@ -36,7 +36,6 @@ export class ProjectModifyComponent implements OnInit {
   projectForm: FormGroup;
 
   // for project modifying
-  projectId: number;
   isModify: boolean;
   projectToModify: Project;
   toolToModify: Tool;
@@ -135,14 +134,14 @@ export class ProjectModifyComponent implements OnInit {
   }
 
   async checkProjectModify() {
-    this.projectId = +this.route.snapshot.paramMap.get('id');
-    console.log("id: "+this.projectId);
-    if (this.projectId){
+    let projectId: number = +this.route.snapshot.paramMap.get('id');
+    console.log("id: "+projectId);
+    if (projectId){
       this.isModify = true;
       //this.projectService.getProject(this.projectId).subscribe(x => this.projectToModify = x, error => console.log(error));
 
       // get project from db
-      await this.projectService.getProject(this.projectId).subscribe(project => this.projectToModify = project,
+      await this.projectService.getProject(projectId).subscribe(project => this.projectToModify = project,
                                                                 error => console.log(error),
                                                                 () => this.setProjectFormValues(this.projectToModify)
                                                                 );
@@ -184,6 +183,7 @@ export class ProjectModifyComponent implements OnInit {
     
   }
 
+  // Update existing project in the db and navigate to the updated project
   updateExistingProject(){
     this.projectService.updateProject(this.projectToModify.id, this.projectForm.value)
     .subscribe(() => {},
