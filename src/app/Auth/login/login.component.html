@@ -2,7 +2,7 @@
   Login
 </h1>
 
-<app-notification></app-notification>
+<app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
 
 <div class="color-light">
   <form [formGroup]="loginForm">

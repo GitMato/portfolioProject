@@ -14,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  alertMessage: string = "";
+
   registerForm: FormGroup;
   newUser: Identity;
 
@@ -38,16 +40,23 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.value.password1 == this.registerForm.value.password2){
       return true;
     } else {
+      this.alertMessage = "Passwords don't match!"
       return false;
     }
   }
 
   registerNewUser(){
-    if (this.isSamePassword){
+    if (this.isSamePassword()){
       this.newUser = { username: this.registerForm.value.username, 
                         password: this.registerForm.value.password1};
       this.authService.registerIdentity(this.newUser).subscribe(()=>{}, 
-                                                                error => console.log(error),
+                                                                error => 
+                                                                {
+                                                                  
+                                                                  console.log(error);
+                                                                  this.alertMessage = error.statusText;
+                                                                
+                                                                },
                                                                 () => this.router.navigate(['login']));
       
     }

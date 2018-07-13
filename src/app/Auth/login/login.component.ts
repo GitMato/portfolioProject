@@ -11,8 +11,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  alertMessage: string = "";
+  successMessage: string = "";
+
   loginForm: FormGroup;
-  message: string;
 
   constructor(private formBuilder: FormBuilder,
               private authService: AuthService,
@@ -37,9 +39,11 @@ export class LoginComponent implements OnInit {
   loginUser(){
     this.authService.loginUser(this.loginForm.value)
                     .subscribe(response => localStorage.setItem('auth_token', JSON.stringify(response)), 
-                    () => this.message = "Wrong username/password!", 
-                    () => { this.router.navigate(['modify']);
-                            this.authService.isLoggedIn = true;}
+                    () => this.alertMessage = "Wrong username/password!", 
+                    () => { 
+                            this.router.navigate(['modify']);
+                            this.authService.isLoggedIn = true;
+                          }
                           );
 
     
