@@ -11,6 +11,9 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 })
 export class ToolService {
 
+  //testi
+  //test: string = "Shared toimii!";
+
   allTools: Tool[] = [];
 
   toolAPIURL = "http://localhost:5000/api/tools/";
@@ -89,9 +92,11 @@ export class ToolService {
     
   }
 
-  updateAllToolsVar(){
-    this.getAllTools().subscribe(response => this.allTools = response,
-                                error => console.log(error));
+  async updateAllToolsVar(){
+    // await this.getAllTools().subscribe(response => this.allTools = response,
+    //                             error => console.log(error),
+    //                             () => {});
+    this.allTools = await this.getAllTools().toPromise();
   }
 
 

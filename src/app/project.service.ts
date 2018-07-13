@@ -84,9 +84,11 @@ export class ProjectService {
     
   }
 
-  updateAllProjectsVar(){
-    this.getAllProjects().subscribe(response => this.allProjects = response, 
-                                    error => console.log(error));
+  async updateAllProjectsVar(){
+    // this.getAllProjects().subscribe(response => this.allProjects = response, 
+    //                                 error => console.log(error));
+
+    this.allProjects = await this.getAllProjects().toPromise();
   }
 
 }
