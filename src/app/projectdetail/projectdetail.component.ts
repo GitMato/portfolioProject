@@ -37,18 +37,21 @@ export class ProjectdetailComponent implements OnInit {
 
   
 
-  ngOnInit(): void {
-
-    //this.id = +this.route.snapshot.paramMap.get('id');
-    //this.getProjects();
+  async ngOnInit(): Promise<void> {
 
     //this.getAllTools().then(() => this.getProject());
-    this.toolService.updateAllToolsVar().then(() => this.getProject(), rejectedReason => console.log(rejectedReason));
 
-    //this.getProject();
-    //this.project = this.projects[this.id-1];
-    //this.projects = [];
-    //this.getToolsForProject();
+    if (this.toolService.allTools.length == 0){
+      await this.initTools();
+      console.log("allTools.length == 0");
+    } else {
+    await this.getProject();
+    }
+  }
+
+  async initTools(){
+    await this.toolService.updateAllToolsVar();
+    await this.getProject();
   }
 
   // getProjects(): void {
