@@ -71,12 +71,16 @@ export class ProjectModifyComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     //this.usableTools = this.toolService.getAllTools();
     //this.getToolsFromDb();
-    this.toolService.updateAllToolsVar();
+    //this.toolService.updateAllToolsVar();
 
     this.checkProjectModify();
+
+    if (this.toolService.allTools.length == 0){
+      await this.toolService.updateAllToolsVar();
+    }
     
   }
 

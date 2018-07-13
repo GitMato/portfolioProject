@@ -6,7 +6,7 @@ import { ProjectService } from '../project.service';
   selector: 'app-projects-parent',
   templateUrl: './projects-parent.component.html',
   styleUrls: ['./projects-parent.component.scss'],
-  providers: [ToolService, ProjectService]
+  providers: [ToolService, ProjectService],
 })
 export class ProjectsParentComponent implements OnInit {
 
