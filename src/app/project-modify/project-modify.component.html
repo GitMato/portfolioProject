@@ -1,4 +1,6 @@
 
+<app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
+
 <mat-tab-group class="color-light">
 
   <!--  Add a project -->
@@ -111,11 +113,11 @@
           </div>
         </form>
 
-        <div>
+        <!--<div>
           <p>{{toolMessage}}</p>
           <p>Form value: {{ toolForm.value | json }}</p>
           <p>Form status: {{ toolForm.status | json }}</p>
-        </div>
+        </div>-->
 
         <mat-list class="toollist">
           <button mat-raised-button (click)="getToolsFromDb()">Refresh</button>

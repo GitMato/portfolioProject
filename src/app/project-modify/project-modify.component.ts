@@ -12,16 +12,18 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
 @Component({
   selector: 'app-project-modify',
   templateUrl: './project-modify.component.html',
-  styleUrls: ['./project-modify.component.scss']
+  styleUrls: ['./project-modify.component.scss'],
 })
 
 export class ProjectModifyComponent implements OnInit {
 
+  // messages for notification
+  alertMessage: string;
+  successMessage: string;
+  
 
-  // Messages for user
-  toolMessage: string;
+  // Message for trying to add already existing tool into the project
   projectAddToolMessage: string;
-  projectMessage: string;
 
   // Form for tool
   toolForm: FormGroup;
@@ -88,28 +90,29 @@ export class ProjectModifyComponent implements OnInit {
     await this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
                                                                         error => console.log(error), 
                                                                         () => {
-                                                                          console.log("New project created!");
+                                                                          //console.log("New project created!");
                                                                           this.projectService.updateAllProjectsVar();
+                                                                          this.successMessage = "New project created!";
                                                                           this.projectForm.reset();
                                                                           this.resetToolsInProject();
+                                                                          this.createForms();
                                                                           });
     
   }
 
   // add a new tool to the db
   async addNewTool(){
-    this.toolMessage = "New tool added."
+    //this.toolMessage = "New tool added."
     await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},
                                                                     error => console.log(error), 
                                                                     () => {
                                                                       //this.getToolsFromDb();
+                                                                      this.successMessage = "New tool created!"
                                                                       this.toolService.updateAllToolsVar();
                                                                       this.toolForm.reset();
                                                                       });
   }
 
-
-  //TODO: bugi: jos lisää toisen projektin putkeen, työkaluja ei lähetetä
   resetToolsInProject(){
     this.toolsInProject = [];
     this.toolIdsInProject = [];
