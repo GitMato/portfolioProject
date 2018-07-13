@@ -11,6 +11,8 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 })
 export class ToolService {
 
+  allTools: Tool[] = [];
+
   toolAPIURL = "http://localhost:5000/api/tools/";
 
   // headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -85,6 +87,11 @@ export class ToolService {
       this.headers = new HttpHeaders().set('Content-Type', 'application/json');
     }
     
+  }
+
+  updateAllToolsVar(){
+    this.getAllTools().subscribe(response => this.allTools = response,
+                                error => console.log(error));
   }
 
 
