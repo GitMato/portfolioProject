@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjectdetailComponent } from './projectdetail/projectdetail.component';
 import { LoginComponent } from './Auth/login/login.component';
@@ -28,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: 'projects',
-    component: ProjectsComponent,
+    component: ProjectListComponent,
 
   },
   {

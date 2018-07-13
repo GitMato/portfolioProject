@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { ProjectsComponent } from './projects/projects.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { ProjectdetailComponent } from './projectdetail/projectdetail.component';
 
@@ -44,7 +44,7 @@ registerLocaleData(localeFi, 'fi');
     AppComponent,
     HomeComponent,
     AboutComponent,
-    ProjectsComponent,
+    ProjectListComponent,
     ProjectdetailComponent,
     PagenotfoundComponent,
     CarouselComponent,

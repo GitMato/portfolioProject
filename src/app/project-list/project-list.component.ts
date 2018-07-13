@@ -11,9 +11,9 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state, a
 
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.scss'],
+  selector: 'app-project-list',
+  templateUrl: './project-list.component.html',
+  styleUrls: ['./project-list.component.scss'],
   animations: [
 
     // Projekti on animoitu vasemmalta
@@ -38,7 +38,7 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state, a
     ]
 })
 
-export class ProjectsComponent implements OnInit {
+export class ProjectListComponent implements OnInit {
   
   projects: Project[] = [];
   
