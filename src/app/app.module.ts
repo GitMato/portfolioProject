@@ -32,6 +32,7 @@ import { TestViewComponent } from './test-view/test-view.component';
 import { ProjectModifyComponent } from './project-modify/project-modify.component';
 import { TestViewChildComponent } from './test-view-child/test-view-child.component';
 import { TestViewChild2Component } from './test-view-child2/test-view-child2.component';
+import { ProjectsParentComponent } from './projects-parent/projects-parent.component';
 
 
 
@@ -54,7 +55,8 @@ registerLocaleData(localeFi, 'fi');
     ProjectModifyComponent,
     TestViewChildComponent,
     TestViewChild2Component,
-    RegisterComponent
+    RegisterComponent,
+    ProjectsParentComponent
   ],
   imports: [
     BrowserModule,
