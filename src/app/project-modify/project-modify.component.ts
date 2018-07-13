@@ -19,12 +19,6 @@ import { forEach } from '@angular/router/src/utils/collection';
 
 export class ProjectModifyComponent implements OnInit {
 
-  //ProjectForm
-  // projectForm = new FormGroup({
-  //   name: new FormControl()
-  // });
-
-  //name = new FormControl();
 
   // Messages for user
   toolMessage: string;
@@ -40,17 +34,8 @@ export class ProjectModifyComponent implements OnInit {
   toolsInProject: Tool[];
   toolIdsInProject: number[];
 
-  // for selecting which project to modify
-  //selectedProject: number;
-  //projects: Project[];
-
   // Form for project
   projectForm: FormGroup;
-
-  // //ToolForm
-  // toolForm = new FormGroup({
-  //   toolName: new FormControl()
-  // });
 
   // for project modifying
   projectId: number;
@@ -67,8 +52,6 @@ export class ProjectModifyComponent implements OnInit {
     this.toolsInProject = [];
     this.toolIdsInProject = [];
 
-    //wat
-    //this.projectToModify = {name: null, id: null, imgUrl: null, imgAlt: null, description: null, details: null, tools: [], extraimg:null};
     this.createForms();
   }
 
@@ -105,8 +88,6 @@ export class ProjectModifyComponent implements OnInit {
                                                                           console.log("New project created!");
                                                                           this.projectForm.reset();
                                                                           });
-    // TODO: if 200 -> reset
-    //this.projectForm.reset();
   }
 
   // add a new tool to the db
@@ -118,7 +99,6 @@ export class ProjectModifyComponent implements OnInit {
                                                                       this.getToolsFromDb();
                                                                       this.toolForm.reset();
                                                                       });
-    //this.toolForm.reset();
   }
 
   // get all tools from the db
@@ -165,8 +145,6 @@ export class ProjectModifyComponent implements OnInit {
                                                                 () => this.setProjectFormValues(this.projectToModify)
                                                                 );
 
-      //console.log(this.projectToModify);
-      //this.setFormValues();
     }
   }
 
