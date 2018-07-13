@@ -48,16 +48,17 @@ export class ProjectListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.getProjects();
+    //this.getProjects();
+    this.projectService.updateAllProjectsVar();
   }
 
   goToProject() {
     this.router.navigate(['projects']);
   }
 
-  getProjects (): void {
-    this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
-  }
+  // getProjects (): void {
+  //   this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
+  // }
 
 }
 

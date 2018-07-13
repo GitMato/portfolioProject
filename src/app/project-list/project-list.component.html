@@ -3,7 +3,7 @@
 <div class="projects-container">
   <ul [@list]="projects.length">
     <!-- Tästä listasta oikeesti dynaaminen -->
-    <li @projectTrigger class="card" *ngFor="let project of projects">
+    <li @projectTrigger class="card" *ngFor="let project of projectService.allProjects">
       <!-- dynaaminen projects osoite-->
       
       <a [routerLink]="['/projects', project.id]">
