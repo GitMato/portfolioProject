@@ -33,6 +33,7 @@ import { ProjectModifyComponent } from './project-modify/project-modify.componen
 import { TestViewChildComponent } from './test-view-child/test-view-child.component';
 import { TestViewChild2Component } from './test-view-child2/test-view-child2.component';
 import { ProjectsParentComponent } from './projects-parent/projects-parent.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 
@@ -56,7 +57,8 @@ registerLocaleData(localeFi, 'fi');
     TestViewChildComponent,
     TestViewChild2Component,
     RegisterComponent,
-    ProjectsParentComponent
+    ProjectsParentComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
