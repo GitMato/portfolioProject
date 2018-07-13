@@ -29,22 +29,22 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state, a
       ])
       ]),
 
-      // Jotta animoinnit ei tulisi yhtäaikaa
+      // Jotta animoinnit ei tulisi yhtäaikaa EI TOIMI ATM - optianal true lisätty toistaiseksi
       trigger('list', [
         transition(':enter', [
-          query('@projectTrigger', stagger(100, animateChild()))
+          query('@projectTrigger', stagger(100, animateChild({delay: 100})), {optional: true})
         ])
       ])
     ]
 })
 
 export class ProjectsComponent implements OnInit {
-
-  projects: Project[];
+  
+  projects: Project[] = [];
+  
   
   constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectService) {
     //this.route.params.subscribe(res => console.log(res.id));
-
    }
 
   ngOnInit() {
