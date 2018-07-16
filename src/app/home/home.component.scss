@@ -68,3 +68,24 @@ ul.card {
     perspective: 500px;
     box-sizing: border-box;
 }
+
+.attention-header {
+    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    padding: 3em 10% 1em 10%;
+    text-shadow: 0 2px 2px #003A61;
+    
+    .text {
+        font-size: 1.5em;
+    }
+}
+
+.right{
+    margin-left:auto; 
+    margin-right:0;
+    float: right;
+    padding: 0em 0em 0em 1em;
+}

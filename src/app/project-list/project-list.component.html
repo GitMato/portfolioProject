@@ -1,26 +1,29 @@
-<h4>My Projects</h4>
 
-<div class="projects-container">
-  <ul [@list]="projectService.allProjects?.length">
+
+<div class="container background-color-light min-width-450">
+  <h1 style="opacity: 0.8; padding: 1.5em 1.5em 0em 1.5em;" class="project-header">Projects</h1>
+  <ul [@list]="projectService?.allProjects?.length">
     <!-- Tästä listasta oikeesti dynaaminen -->
-    <li @projectTrigger class="card" *ngFor="let project of projectService.allProjects">
+    <li @projectTrigger class="card" *ngFor="let project of projectService?.allProjects">
       <!-- dynaaminen projects osoite-->
       
-      <a [routerLink]="['/projects', project.id]">
+      <a [routerLink]="['/projects', project?.id]">
       <!--<a href="projects"  (click)="goToProject()">-->
         <mat-card class="project-card color-light flex">
 
-          <img mat-card-lg-image class="project-pic" [src]="project.imgUrl" [alt]="project.imgAlt" *ngIf="project.imgUrl">
-          <img mat-card-lg-image class="project-pic" [alt]="project.imgAlt" *ngIf="!project.imgUrl"> <!-- insert placeholder pic if pic not provided -->
-          <mat-card-header class="project-header">
-              <!--<div mat-card-avatar class="example-header-image"></div>-->
-              <mat-card-title class="h1">{{project.name}}</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              {{project.description}}
-            </p>
-          </mat-card-content>
+          <img mat-card-lg-image class="project-pic" [src]="project?.imgUrl" [alt]="project?.imgAlt" *ngIf="project?.imgUrl">
+          <img mat-card-lg-image class="project-pic" [alt]="project?.imgAlt" *ngIf="!project?.imgUrl"> <!-- insert placeholder pic if pic not provided -->
+          <table>
+            <mat-card-header class="project-header">
+                <!--<div mat-card-avatar class="example-header-image"></div>-->
+                <mat-card-title><h1>{{project?.name}}</h1></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="project-content">
+              <p>
+                {{project?.description}}
+              </p>
+            </mat-card-content>
+          </table>
         </mat-card>
       </a>
     </li>

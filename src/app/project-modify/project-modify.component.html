@@ -1,7 +1,7 @@
 
 <app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
 
-<mat-tab-group class="color-light">
+<mat-tab-group class="color-light container">
 
   <!--  Add a project -->
   <mat-tab label="Add / modify a project">
@@ -121,7 +121,7 @@
 
         <mat-list class="toollist">
           <button mat-raised-button (click)="getToolsFromDb()">Refresh</button>
-          <h3 mat-subheader>List of all tools</h3>
+          <h3>List of all tools</h3>
           <mat-list-item *ngFor="let tool of toolService.allTools">
             <!--<mat-icon mat-list-icon>folder</mat-icon>-->
             <h4 mat-line>{{tool.name}}</h4>

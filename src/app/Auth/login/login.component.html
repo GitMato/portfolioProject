@@ -1,24 +1,26 @@
-<h1>
-  Login
-</h1>
+<div class="container">
+  <h1>
+    Login
+  </h1>
 
-<app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
+  <app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
 
-<div class="color-light">
-  <form [formGroup]="loginForm">
-    <tr class="alert"><b>{{message}}</b></tr>
-      <div>
-          <mat-form-field hintLabel="Required">
-              <input matInput placeholder="Username" class="form-control" formControlName="username">
-          </mat-form-field>
-        </div>
+  <div class="color-light">
+    <form [formGroup]="loginForm">
+      <tr class="alert"><b>{{message}}</b></tr>
         <div>
-          <mat-form-field hintLabel="Required">
-              <input matInput placeholder="Password" type="password" class="form-control" formControlName="password">
-          </mat-form-field>
-        </div>
-        <div>
-            <button mat-raised-button type="submit" (click)="loginUser()">Login</button>
-        </div>
-  </form>
+            <mat-form-field hintLabel="Required">
+                <input matInput placeholder="Username" class="form-control" formControlName="username">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field hintLabel="Required">
+                <input matInput placeholder="Password" type="password" class="form-control" formControlName="password">
+            </mat-form-field>
+          </div>
+          <div>
+              <button mat-raised-button type="submit" (click)="loginUser()">Login</button>
+          </div>
+    </form>
+  </div>
 </div>

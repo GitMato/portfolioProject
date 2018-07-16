@@ -28,7 +28,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
   @Input() timing = '250ms ease-in';
   //@Input() showControls = true;
   private player : AnimationPlayer;
-  private itemWidth : number = 500;
+  private itemWidth : number = 400;
   private currentSlide: number = 0;
 
   //projects: Project[];
