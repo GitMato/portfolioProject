@@ -1,0 +1,47 @@
+.information-text{
+    color: white;
+    font-size: 18px;
+    margin-bottom: 1em;
+    min-width: 300px;
+}
+
+.form{
+    padding: 0em 1.5em 1.5em 1.5em !important;
+}
+
+.submit-btn{
+    margin-top: 1em;
+}
+
+.center{
+    //width: 20em;
+    max-width: 20em;
+    min-width: 300px;
+    margin: auto;
+}
+
+.form-header{
+    padding: 1em 0em 0em 1em;
+}
+
+.error-msg{
+    background-color: rgb(255, 126, 103);
+}
+
+ul{
+    display: block;
+    list-style-type: disc;
+
+    li{
+        display: list-item;
+    }
+}
+
+.invalid{
+    color: red;
+
+}
+
+.valid {
+    color: greenyellow;
+}

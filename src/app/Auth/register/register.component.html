@@ -1,27 +1,83 @@
 <div class="container">
-    <h1>Register</h1>
-    <app-notification [notificationAlert]="alertMessage" [notificationSuccess]="successMessage"></app-notification>
+    
+    <app-notification [notificationAlert]="alertMessage"></app-notification>
 
-    <div class="color-light">
+    <mat-card class="color-bright-blue information-text">
+        <p>The purpose of the register-view and being able to register is just to demonstrate that it actually works.</p>
+        <p>Default registered users are not authorized to modify projects.</p>
 
-        <form [formGroup]="registerForm">
+    </mat-card>
+
+    <div class="color-light center">
+        <h1 class="form-header">Register</h1>
+        <form [formGroup]="registerForm" class="form">
         <div>
-            <mat-form-field hintLabel="Required">
+            <mat-form-field>
                 <input matInput placeholder="Username" class="form-control" formControlName="username">
             </mat-form-field>
+
+            <mat-card *ngIf="registerForm.controls['username'].errors && !registerForm.controls['username'].pristine" class="error-msg">
+                <div [hidden]="!registerForm.controls['username'].errors.required">Username is required.</div>
+                <div [hidden]="registerForm.controls['username'].errors.patternInvalid || registerForm.controls['username'].errors.required">
+                    <div>Username can only contain letters and numbers.</div>
+                </div>
+            </mat-card>
+
         </div>
         <div>
-            <mat-form-field hintLabel="Required">
-                <input matInput placeholder="Password" type="password" class="form-control" formControlName="password1">
+            <mat-form-field>
+                <input matInput placeholder="Password" name="password" type="password" class="form-control" formControlName="password1">
+
+                <!--<mat-error *ngIf="registerForm.controls['password1'].errors">{{getPasswordErrorMessage(password1)}}</mat-error>-->
+
+                <!-- <div [hidden]="registerForm.controls['password1'].errors.required">Required</div>
+                <div [hidden]="registerForm.controls['password1'].errors.patternInvalid">Invalid</div> -->
+
             </mat-form-field>
+
+            <mat-card *ngIf="registerForm.controls['password1'].errors && !registerForm.controls['password1'].pristine" class="error-msg">
+                <div [hidden]="!registerForm.controls['password1'].errors?.required">Password is required.</div>
+                <div [hidden]="registerForm.controls['password1'].errors?.patternInvalid || registerForm.controls['password1'].errors?.required">
+                    <div>Password needs</div>
+                    <ul>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password1'].errors?.minlength">minimum of 8 characters</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password1'].errors?.lowercase">one lowercase</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password1'].errors?.uppercase">one uppercase</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password1'].errors?.number">one number.</li>
+                    </ul>
+                </div>
+            </mat-card>
+
         </div>
         <div>
-            <mat-form-field hintLabel="Required">
-                <input matInput placeholder="Confirm password" type="password" class="form-control" formControlName="password2">
+            <mat-form-field  >
+                <input matInput  placeholder="Confirm password" name="confirmPassword" type="password" class="form-control" formControlName="password2">
             </mat-form-field>
+
+            <!-- tapa 1.-->
+            <mat-error *ngIf="registerForm.controls['password2'].hasError('required') && !registerForm.controls['password2'].pristine"><b>Password is required.</b></mat-error>
+            <mat-error *ngIf="registerForm.controls['password2'].hasError('pattern') && !registerForm.controls['password2'].hasError('required')">PATTERN ERROR</mat-error>
+
+            <!-- tapa 2. -->
+            <mat-card *ngIf="(registerForm.errors?.nomatch || registerForm.controls['password2'].errors) && !registerForm.controls['password2'].pristine" class="error-msg">
+                <div [hidden]="!registerForm.controls['password2'].errors?.required">Password is required.</div>
+                <div [hidden]="registerForm.controls['password2'].errors?.patternInvalid || registerForm.controls['password2'].errors?.required">
+                    <div>Password needs</div>
+                    <ul>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password2'].errors?.minlength">minimum of 8 characters</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password2'].errors?.lowercase">one lowercase</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password2'].errors?.uppercase">one uppercase</li>
+                        <li class="invalid" [class.valid]="!registerForm.controls['password2'].errors?.number">one number</li>
+                        <li class="invalid" [class.valid]="!registerForm.errors?.nomatch">Passwords need to match.</li>
+                    </ul>
+                </div>
+                
+            </mat-card>
         </div>
+
+
         <div>
-            <button mat-raised-button type="submit" (click)="registerNewUser()">Register</button>
+            <button mat-raised-button class="submit-btn" type="submit" (click)="registerNewUser()" [disabled]="!registerForm.valid">Register</button>
         </div>
         </form>
     </div>

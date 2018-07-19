@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { AuthService, Identity } from '../../auth.service';
 import { Router } from '@angular/router';
+import { lowercaseValidator, uppercaseValidator, numberValidator, passwordMatchValidator } from '../../project';
 
 @Component({
   selector: 'app-register',
@@ -29,10 +30,30 @@ export class RegisterComponent implements OnInit {
 
   createRegisterForm(){
     this.registerForm = this.formbuilder.group({
-      username: ['', Validators.required],
-      password1: ['', Validators.required],
-      password2: ['', Validators.required],
-    });
+      username: ['', [
+                      Validators.required,
+                      Validators.pattern('[a-zA-Z0-9]*')
+                    ]],
+      password1: ['', [
+                      Validators.required, 
+                      Validators.minLength(8),
+                      //require at least one lowercase, one uppercase, one number and total of 8 symbols or more
+                      lowercaseValidator,
+                      uppercaseValidator,
+                      numberValidator
+                    ]],
+      password2: ['', [
+                      Validators.required, 
+                      Validators.minLength(8),
+                      //Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$')
+                      lowercaseValidator,
+                      uppercaseValidator,
+                      numberValidator
+                    ]]},
+                    {validator: passwordMatchValidator}
+                  );
+    //console.log(this.registerForm.controls['password2'].errors.lowercase);
+    //console.log(this.registerForm.controls['password2'].hasError('required'));
   }
 
   isSamePassword(): boolean {
@@ -58,10 +79,13 @@ export class RegisterComponent implements OnInit {
                                                                 
                                                                 },
                                                                 () => this.router.navigate(['login']));
-      
-    }
+      }
     
   }
 
+  getPasswordErrorMessage(p: string){
+    return "asd";
+  }
 
+  
 }
