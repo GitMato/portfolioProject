@@ -10,7 +10,6 @@
       <h1 *ngIf="!isModify; else modifyBlock">Add a Project</h1>
       <ng-template #modifyBlock><h1>Modify the project "{{projectToModify?.name}}"</h1></ng-template>
 
-      {{projectMessage}}
       <form [formGroup]="projectForm">
 
         <p>
@@ -23,7 +22,7 @@
 
         <p>
           <mat-form-field class="full-width">
-              <input matInput name="ImageUrl" placeholder="Url for the main image" formControlName="imgUrl">
+              <input matInput type="url" name="ImageUrl" placeholder="Url for the main image" formControlName="imgUrl">
               <!-- TODO: URL Validator tälle-->
           </mat-form-field>
         </p>
@@ -38,11 +37,11 @@
           
           <mat-form-field>
             <mat-select [(value)]="selectedTool" placeholder="Select new tool used" name="ToolSelection" >
-              <mat-option *ngFor="let tool of toolService.allTools" [value]="tool.name">{{tool.name}}</mat-option>
+              <mat-option *ngFor="let tool of allTools" [value]="tool.name">{{tool.name}}</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <button mat-raised-button (click)="addToolToProject()">Add tool to the project</button>
+          <button mat-raised-button (click)="addToolToProject()">Add the tool to the project</button>
           {{projectAddToolMessage}}
 
           <div *ngIf="toolsInProject" name="Tools list">
@@ -74,13 +73,49 @@
         </p>
 
         <div>
-          Possible extra images:
-          <input type="checkbox" name="extraImgs" label="extraImgs">
+          <!--Possible extra images:-->
+          <mat-form-field class="full-width">
+            <input matInput #extraImgInput type="url" name="extraImgs" label="extraImgs" placeholder="Url for possible extra image">
+            <!-- TODO: URL Validator tälle-->
+          </mat-form-field>
+          <button mat-raised-button class="small-button" (click)="addExtraImg(extraImgInput.value); extraImgInput.value = '';">Add the extra image</button>
+          <mat-list *ngIf="extraImages.length != 0">
+            <h4>Extra images</h4>
+          
+            <mat-list-item *ngFor="let img of extraImages; let index = index;" >
+              <!--<mat-icon mat-list-icon>folder</mat-icon>-->
+
+              <h4 mat-line>{{img}}</h4>
+              <!--<button mat-raised-button class="small-button" (click)="modifyExtraImg(index)">Modify</button>-->
+              <button mat-raised-button class="small-button" (click)="removeExtraImg(index)">Remove image</button>
+            </mat-list-item>
+          </mat-list>
+          <!-- Possible extra images ends -->
         </div>
 
         <div>
-          <button mat-raised-button *ngIf="!isModify; else modifyBlockButton" (click)="addNewProject()">Add the project</button>
-          <ng-template #modifyBlockButton><button mat-raised-button (click)="updateExistingProject()">Update the project</button></ng-template>
+          <!-- Possible extra links -->
+          <mat-form-field class="full-width">
+            <input matInput #extraUrlInput type="url" name="extraUrls" label="extraUrls" placeholder="Url for possible extra link">
+            <!-- TODO: URL Validator tälle-->
+          </mat-form-field>
+          <button mat-raised-button class="small-button" (click)="addExtraUrl(extraUrlInput.value); extraUrlInput.value = ''; ">Add the extra link</button>
+          <mat-list *ngIf="extraUrls.length != 0">
+            <h4>Extra Urls</h4>
+          
+            <mat-list-item *ngFor="let url of extraUrls; let index = index;" >
+              <!--<mat-icon mat-list-icon>folder</mat-icon>-->
+
+              <h4 mat-line>{{url}}</h4>
+              <!--<button mat-raised-button class="small-button" (click)="modifyExtraImg(index)">Modify</button>-->
+              <button mat-raised-button class="small-button" (click)="removeExtraUrl(index)">Remove url</button>
+            </mat-list-item>
+          </mat-list>
+        </div>
+
+        <div>
+          <button mat-raised-button *ngIf="!isModify; else modifyBlockButton" class="submit-btn" (click)="addNewProject()" [disabled]="!projectForm.valid">Add the project</button>
+          <ng-template #modifyBlockButton><button mat-raised-button class="submit-btn" (click)="updateExistingProject()" [disabled]="!projectForm.valid">Update the project</button></ng-template>
         </div>
 
       </form>
@@ -103,9 +138,9 @@
           </mat-form-field>
           
           <div>
-            <button *ngIf="!toolToModify; else modifyToolButton" mat-raised-button (click)="addNewTool()">Add the tool</button>
+            <button *ngIf="!toolToModify; else modifyToolButton" class="submit-btn" mat-raised-button (click)="addNewTool()" [disabled]="!toolForm.valid">Add the tool</button>
             <ng-template #modifyToolButton>
-              <button mat-raised-button (click)="updateExistingTool()">Update the tool</button>
+              <button mat-raised-button class="submit-btn" (click)="updateExistingTool()" [disabled]="!toolForm.valid">Update the tool</button>
               <button mat-raised-button (click)="resetToolForm()">Reset the form</button>
             
             </ng-template>
@@ -120,9 +155,9 @@
         </div>-->
 
         <mat-list class="toollist">
-          <button mat-raised-button (click)="getToolsFromDb()">Refresh</button>
+          <!--<button mat-raised-button (click)="getToolsFromDb()">Refresh</button>-->
           <h3>List of all tools</h3>
-          <mat-list-item *ngFor="let tool of toolService.allTools">
+          <mat-list-item *ngFor="let tool of allTools">
             <!--<mat-icon mat-list-icon>folder</mat-icon>-->
             <h4 mat-line>{{tool.name}}</h4>
             <p mat-line> id: {{tool.id}} </p><button mat-raised-button class="small-button" (click)="setToolFormValue(tool)">modify</button>
