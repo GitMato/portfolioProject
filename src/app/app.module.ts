@@ -34,6 +34,7 @@ import { TestViewChildComponent } from './test-view-child/test-view-child.compon
 import { TestViewChild2Component } from './test-view-child2/test-view-child2.component';
 import { ProjectsParentComponent } from './projects-parent/projects-parent.component';
 import { NotificationComponent } from './notification/notification.component';
+import { CarouselItemDirective, CarouselItemElement } from './carousel/carouselItemDirective';
 
 
 
@@ -58,7 +59,9 @@ registerLocaleData(localeFi, 'fi');
     TestViewChild2Component,
     RegisterComponent,
     ProjectsParentComponent,
-    NotificationComponent
+    NotificationComponent,
+    CarouselItemDirective,
+    CarouselItemElement
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ registerLocaleData(localeFi, 'fi');
     MatListModule,
     MatButtonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
