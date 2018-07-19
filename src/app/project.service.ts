@@ -17,7 +17,7 @@ export interface jsonProject {
 })
 export class ProjectService {
 
-  allProjects: Project[] = [];
+  //allProjects: Project[] = [];
 
   projectAPIURL = "http://localhost:5000/api/projects/"; 
 
@@ -84,11 +84,11 @@ export class ProjectService {
     
   }
 
-  async updateAllProjectsVar(){
-    // this.getAllProjects().subscribe(response => this.allProjects = response, 
-    //                                 error => console.log(error));
+  // async updateAllProjectsVar(){
+  //   // this.getAllProjects().subscribe(response => this.allProjects = response, 
+  //   //                                 error => console.log(error));
 
-    this.allProjects = await this.getAllProjects().toPromise();
-  }
+  //   this.allProjects = await this.getAllProjects().toPromise();
+  // }
 
 }
