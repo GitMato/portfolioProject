@@ -25,4 +25,8 @@ export class AppComponent {
     localStorage.removeItem('auth_token');
   }
 
+  isLoggedIn(){
+    return this.authService.isLoggedIn;
+  }
+
 }

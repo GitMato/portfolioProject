@@ -1,7 +1,7 @@
 
 
 .footer {
-    position:absolute;
+    position: relative;;
     
     bottom:0;
     width:100%;
@@ -10,6 +10,7 @@
     opacity: 0.5;
     //background: rgb(187, 228, 248);
     background:rgb(50, 56, 59);
+    margin-top: 1em;
 }
 
 li.navigation-item {
@@ -21,8 +22,29 @@ li.navigation-item:hover {
 }
 
 header.nav {
-
+    
     background: rgb(50, 56, 59);
     //background: rgb(187, 228, 248);
     padding: 1% 0% 1% 1%;
+}
+
+
+.align-right {
+    //position: relative;
+    //display: block;
+    display: inline-flex;
+    margin-left: auto !important;
+    
+    //margin-right: 0;
+    //position: relative;
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    
+    //text-align: right;
+    //padding: 10px;
+}
+
+header{
+    margin-bottom: 1em;
 }
