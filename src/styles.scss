@@ -11,13 +11,14 @@ body {
     margin: 0;
 }
 
-body, h1 {
+body, h1, h2 {
     font-family: 'Raleway', 'Arial';
     color:#fff;
 }
 
 h1 {
     font-size: 25px;
+    text-shadow: 0 2px 2px #003A61;
 }
 
 
@@ -84,4 +85,8 @@ a {
 
 .color-light {
     background: rgb(136, 160, 177);
+}
+
+.color-bright-blue{
+    background: #57B3F1;
 }

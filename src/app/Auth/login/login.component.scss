@@ -2,3 +2,25 @@
     color: crimson;
     
 }
+
+.login-form{
+    //display: flex;
+    max-width: 20em;
+    min-width: 300px;
+    //position: absolute;
+    margin: auto;
+}
+
+mat-form-field{
+    padding: 0em 1.5em 0em 1.5em;
+}
+
+button{
+    margin-bottom: 1em;
+    margin-top: 1em;
+    margin-left: 1.5em;
+}
+
+.form-header{
+    padding: 1em 0em 0em 1em;
+}
