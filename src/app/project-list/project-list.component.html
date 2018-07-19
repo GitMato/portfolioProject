@@ -1,10 +1,10 @@
 
 
-<div class="container background-color-light min-width-450">
+<div class="container color-bright-blue min-width-450">
   <h1 style="opacity: 0.8; padding: 1.5em 1.5em 0em 1.5em;" class="project-header">Projects</h1>
-  <ul [@list]="projectService?.allProjects?.length">
+  <ul [@list]="projects?.length">
     <!-- Tästä listasta oikeesti dynaaminen -->
-    <li @projectTrigger class="card" *ngFor="let project of projectService?.allProjects">
+    <li @projectTrigger class="card" *ngFor="let project of projects">
       <!-- dynaaminen projects osoite-->
       
       <a [routerLink]="['/projects', project?.id]">

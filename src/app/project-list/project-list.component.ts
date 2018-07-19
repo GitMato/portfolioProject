@@ -8,6 +8,7 @@ import { ProjectService } from '../project.service';
 
 // Animations
 import {trigger, style, transition, animate, keyframes, query, stagger, state, animateChild} from '@angular/animations';
+import { DataStorageService } from '../data-storage.service';
 
 
 @Component({
@@ -40,17 +41,34 @@ import {trigger, style, transition, animate, keyframes, query, stagger, state, a
 
 export class ProjectListComponent implements OnInit {
   
-  //projects: Project[] = [];
+  projects: Project[] = [];
   
-  
-  constructor(private route: ActivatedRoute, private router: Router, private projectService: ProjectService) {
+  constructor(//private route: ActivatedRoute, 
+              private router: Router, 
+              //private projectService: ProjectService,
+              private dataStorageService: DataStorageService) {
     //this.route.params.subscribe(res => console.log(res.id));
+
+    this.dataStorageService.allProjectsObs
+      .subscribe(
+        allprojects => 
+        {
+          this.projects = allprojects;
+        }, 
+        error => 
+          console.log(error)
+    );
+
    }
 
   async ngOnInit() {
     //this.getProjects();
-    if (this.projectService.allProjects.length == 0){
-      await this.projectService.updateAllProjectsVar();
+    //if (this.projectService.allProjects.length == 0){
+    //  await this.projectService.updateAllProjectsVar();
+    //}
+
+    if (this.projects.length == 0){
+      await this.dataStorageService.updateProjects();
     }
   }
 

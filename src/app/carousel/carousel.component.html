@@ -2,7 +2,7 @@
 <button mat-button (click)="prev()" class="controlButton faded">Previous</button>
 <section class="carousel-wrapper  centered" [ngStyle]="carouselWrapperStyle">
   <ul class="carousel-inner" #carousel>
-    <div *ngFor="let project of projectService?.allProjects;">
+    <div *ngFor="let project of projects;">
       <li class="carousel-item" [ngStyle]="carouselItemStyle">
         <!--<ng-container [ngTemplateOutlet]="project.tpl">-->
 
@@ -12,7 +12,7 @@
             <mat-card class="project-card color-light flex">
 
               <img mat-card-lg-image class="project-pic"  [src]="project?.imgUrl" [alt]="project?.imgAlt" *ngIf="project?.imgUrl">
-              <img mat-card-lg-image class="project-pic"  [alt]="project?.imgAlt" *ngIf="!project?.imgUrl">
+              <!--<img mat-card-lg-image class="project-pic"  [alt]="project?.imgAlt" *ngIf="!project?.imgUrl">-->
               <mat-card-header class="project-header">
                   <!--<div mat-card-avatar class="example-header-image"></div>-->
                   <mat-card-title><div class="carousel-card-title"><h1 class="visible">{{project?.name}}</h1></div></mat-card-title>
@@ -44,7 +44,7 @@
 
 <!-- Circles which indicates the steps of the carousel -->
 <div style="text-align:center;margin-top:40px;" >
-  <span class="step" *ngFor="let project of projectService?.allProjects; let i = index;" [attr.id] ="i" [ngClass]="{'active': isCurrentSlide(i)}"></span>
+  <span class="step" *ngFor="let project of projects; let i = index;" [attr.id] ="i" [ngClass]="{'active': isCurrentSlide(i)}"></span>
 </div>
 <!-- 
 <div class="centered">

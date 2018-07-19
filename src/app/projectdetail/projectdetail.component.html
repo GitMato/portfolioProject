@@ -1,30 +1,37 @@
 
-<div *ngIf="project">
-<!-- If logged in-->
-<button mat-raised-button (click)="modifyThisProject()" *ngIf="authService.isLoggedIn">Modify project</button>
-<button mat-raised-button (click)="deleteThisProject()" *ngIf="authService.isLoggedIn">Delete project</button>
-<!-- -->
-<img src={{project.imgUrl}} class="centered">
+<div *ngIf="project" class="container">
+  <!-- If logged in-->
+  <button mat-raised-button (click)="modifyThisProject()" *ngIf="authService.isLoggedIn" style="margin-right: 2em;" class="btn">Modify project</button>
+  <button mat-raised-button (click)="deleteThisProject()" *ngIf="authService.isLoggedIn" style="background-color: salmon;" class="btn">Delete project</button>
+  <!-- -->
+  <img src={{project.imgUrl}} class="centered">
 
 
-<h1>{{project.name}}</h1>
+  <h1>{{project.name}}</h1>
 
-<p>{{project.details}}</p>
-
-
-<h4>Tools:</h4>
-<ul *ngIf="project.tools">
-  <li class="" *ngFor="let tool of toolsUsed">
-    {{tool.name}}
-  </li>
-</ul>
+  <p>{{project.details}}</p>
 
 
-<div class="extra-img" *ngIf="project.extraimg">
-<p>valinnaiset pienet lisäkuvat</p>
-<span *ngFor="let img of project.extraimg">
-  <img src="img" alt="" class="">
-</span>
-</div>
+  <h4>Tools:</h4>
+  <ul *ngIf="project.tools">
+    <li class="" *ngFor="let tool of toolsUsed">
+      {{tool.name}}
+    </li>
+  </ul>
+
+
+  <div class="extra-img" *ngIf="project.extraimg?.length > 0">
+  <p>More images of the project:</p>
+  <span *ngFor="let imageurl of project.extraimg">
+    <img [src]="imageurl" class="project-extra-image">
+  </span>
+  </div>
+
+  <div class="extra-url" *ngIf="project.extraUrls?.length > 0">
+    <h4>Links:</h4>
+    <ul *ngFor="let url of project.extraUrls">
+      <li><a href="imageurl" class="project-extra-url">testi</a></li>
+    </ul>
+  </div>
 
 </div>

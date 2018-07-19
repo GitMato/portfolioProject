@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 // The location is an Angular service for interacting with the browser. You'll use it later to navigate back to the view that navigated here.
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
   selector: 'app-projectdetail',
@@ -23,16 +24,27 @@ export class ProjectdetailComponent implements OnInit {
 
   //projects: Project[];
   projectId: number;
-  //toolsAvailable: Tool[] = [];
+
+  allTools: Tool[] = [];
   toolsUsed: Tool[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private toolService: ToolService,
-    private location: Location,
+    //private toolService: ToolService,
+    //private location: Location,
     private router: Router,
-    private authService: AuthService ) {
+    private authService: AuthService,
+    private dataStorageService: DataStorageService ) {
+      this.dataStorageService.allToolsObs
+        .subscribe( 
+          value => {
+            this.allTools = value;
+            //this.dataStorageService.updateTools();
+          },
+      error => console.log(error) );
+
+
     }
 
   
@@ -41,7 +53,7 @@ export class ProjectdetailComponent implements OnInit {
 
     //this.getAllTools().then(() => this.getProject());
 
-    if (this.toolService.allTools.length == 0){
+    if (this.allTools.length == 0){
       await this.initTools();
       console.log("allTools.length == 0");
     } else {
@@ -50,8 +62,11 @@ export class ProjectdetailComponent implements OnInit {
   }
 
   async initTools(){
-    await this.toolService.updateAllToolsVar();
+    //await this.toolService.updateAllToolsVar();
+
+    await this.dataStorageService.updateTools();
     await this.getProject();
+    //await this.dataStorageService.updateTools();
   }
 
   // getProjects(): void {
@@ -78,15 +93,24 @@ export class ProjectdetailComponent implements OnInit {
   // }
 
 
-  findToolsForProject() {
+  findToolsForProject(checkAmount: number = 5) {
     let tool: Tool;
     for (let toolId of this.project.tools){
-      tool = this.toolService.allTools.find(x => x.id == toolId);
+      tool = this.allTools.find(x => x.id == toolId);
       if (tool != undefined){
         console.log(tool.name + tool.id);
         this.toolsUsed.push(tool);
+      } else {
+        console.log("Undefined tool exists in this project.")
       }
     }
+    
+    // if (this.allTools.length == 0 && checkAmount > 0){
+    //   setTimeout(() => this.findToolsForProject(checkAmount - 1), 100);
+    //   console.log("meni looppiin")
+    // }
+
+    //console.log("alltools: " + this.allTools + ". " +this.toolsUsed);
   }
 
 
@@ -101,7 +125,8 @@ export class ProjectdetailComponent implements OnInit {
       this.projectService.deleteProject(this.projectId).subscribe(()=>{},
                                         error => (console.log(error)), 
                                         () => { 
-                                                this.projectService.updateAllProjectsVar();
+                                                //this.projectService.updateAllProjectsVar();
+                                                this.dataStorageService.updateProjects();
                                                 this.router.navigate(['/projects/']);
                                                 console.log("The project has been deleted.");}
                                         );
