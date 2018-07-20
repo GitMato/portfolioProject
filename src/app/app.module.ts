@@ -24,7 +24,8 @@ import {MatCardModule,
         MatInputModule,
         MatTabsModule,
         MatListModule,
-        MatButtonModule } from '@angular/material';
+        MatButtonModule, 
+        MatDialogModule} from '@angular/material';
 import { CarouselComponent } from './carousel/carousel.component';
 import { LoginComponent } from './Auth/login/login.component';
 import { RegisterComponent } from './Auth/register/register.component';
@@ -35,6 +36,7 @@ import { TestViewChild2Component } from './test-view-child2/test-view-child2.com
 import { ProjectsParentComponent } from './projects-parent/projects-parent.component';
 import { NotificationComponent } from './notification/notification.component';
 import { CarouselItemDirective, CarouselItemElement } from './carousel/carouselItemDirective';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 
 
 
@@ -61,7 +63,8 @@ registerLocaleData(localeFi, 'fi');
     ProjectsParentComponent,
     NotificationComponent,
     CarouselItemDirective,
-    CarouselItemElement
+    CarouselItemElement,
+    ImageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,11 @@ registerLocaleData(localeFi, 'fi');
     MatButtonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule
     
+  ],
+  entryComponents: [
+    ImageDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
