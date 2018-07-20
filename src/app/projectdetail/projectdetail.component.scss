@@ -11,22 +11,38 @@
     margin: auto;
     padding: 0em 0em 0em 1em;
 }
+.extra-img-container{
+    width: 100%;
+    text-align:center;
+}
+.extra-image{
+    max-width: 200px;
+    max-height: 200px;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    display: inline-flex;
+    margin: auto;
+    //text-align:center;
+    object-fit: cover;
+    
+}
 
-.project-extra-image{
-
+.extra-image:hover{
+    transform: scale(1.05);
 }
 
 .btn{
-    margin-right: 0;
-    margin-left: auto;
+    //margin-right: 0;
+    margin: auto;
+    right: 0;
     //TODO
+    margin-bottom: 1em;
 }
 
-.project-extra-url{
+.extra-url{
     opacity: 0.5;
 }
 
-.project-extra-url:hover{
+.extra-url:hover{
     opacity: 1;
     //color: greenyellow;
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Inject } from '@angular/core';
 
 import { Project, Tool } from '../project';
 import { ProjectService } from '../project.service';
@@ -11,11 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
 import { DataStorageService } from '../data-storage.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '../../../node_modules/@angular/material';
+import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 
 @Component({
   selector: 'app-projectdetail',
   templateUrl: './projectdetail.component.html',
-  styleUrls: ['./projectdetail.component.scss']
+  styleUrls: ['./projectdetail.component.scss'],
+  providers: []
 })
 export class ProjectdetailComponent implements OnInit {
 
@@ -35,6 +38,7 @@ export class ProjectdetailComponent implements OnInit {
     //private location: Location,
     private router: Router,
     private authService: AuthService,
+    public dialog: MatDialog,
     private dataStorageService: DataStorageService ) {
       this.dataStorageService.allToolsObs
         .subscribe( 
@@ -134,7 +138,9 @@ export class ProjectdetailComponent implements OnInit {
     }
     //this.projectService.deleteProject(this.projectId);
     //this.router.navigate(['/projects/']);
-  }
-
-
+  }  
+    openDialog(url: string): void{
+  
+      const dialogRef = this.dialog.open(ImageDialogComponent, { maxWidth: '90%', maxHeight: '90%', data: {url: url}});
+    }
 }
