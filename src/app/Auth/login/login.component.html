@@ -9,18 +9,30 @@
     </h1>
     <form [formGroup]="loginForm">
         <div>
-            <mat-form-field hintLabel="Required">
-                <input matInput placeholder="Username" name="username" class="form-control" formControlName="username">
-            </mat-form-field>
-          </div>
-          <div>
-            <mat-form-field hintLabel="Required">
-                <input matInput placeholder="Password" name="password" type="password" class="form-control" formControlName="password">
-            </mat-form-field>
-          </div>
-          <div>
-              <button mat-raised-button type="submit" (click)="loginUser()" [disabled]="!loginForm.valid">Login</button>
-          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput name="username" class="form-control" formControlName="username">
+          </mat-form-field>
+
+          <mat-card *ngIf="loginForm.controls['username'].errors && !loginForm.controls['username'].pristine" class="error-msg">
+            <div [hidden]="!loginForm.controls['username'].errors?.required">Username is required.</div>
+          </mat-card>
+          
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput name="password" type="password" class="form-control" formControlName="password">
+          </mat-form-field>
+
+          <mat-card *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].pristine" class="error-msg">
+            <div [hidden]="!loginForm.controls['password'].errors?.required">Password is required.</div>
+          </mat-card>
+
+        </div>
+        <div>
+            <button mat-raised-button type="submit" (click)="loginUser()" [disabled]="!loginForm.valid">Login</button>
+        </div>
     </form>
   </div>
 </div>

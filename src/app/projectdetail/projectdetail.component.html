@@ -21,7 +21,7 @@
 
 
   <div *ngIf="project.extraimg?.length > 0">
-    <p>More images of the project:</p>
+    <h4>More images of the project:</h4>
     <div class="extra-img-container">
       <span class="extra-img" *ngFor="let imageurl of project.extraimg">
         <img [src]="imageurl" class="extra-image" (click)="openDialog(imageurl)">
@@ -32,7 +32,7 @@
   <div class="extra-url-container" *ngIf="project.extraUrls?.length > 0">
     <h4>Links:</h4>
     <ul *ngFor="let url of project.extraUrls">
-      <li><a href="url" class="extra-url">{{url}}</a></li>
+      <li><a href="{{url}}" class="extra-url">{{url}}</a></li>
     </ul>
   </div>
 

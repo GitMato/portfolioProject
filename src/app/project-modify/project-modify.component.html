@@ -13,35 +13,38 @@
       <form [formGroup]="projectForm">
 
         <p>
-          <mat-form-field>
-
-            <input matInput name="name" placeholder="Project's name" formControlName="name">
+          <mat-form-field appearance="fill">
+            <mat-label>Project's name</mat-label>
+            <input matInput name="name" formControlName="name">
 
           </mat-form-field>
         </p>
 
         <p>
-          <mat-form-field class="full-width">
-              <input matInput type="url" name="ImageUrl" placeholder="Url for the main image" formControlName="imgUrl">
+          <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Main image URL</mat-label>
+              <input matInput type="url" name="ImageUrl" formControlName="imgUrl">
               <!-- TODO: URL Validator tälle-->
           </mat-form-field>
         </p>
 
         <p>
-          <mat-form-field class="full-width">
-            <input matInput name="ImageAlt" placeholder="Alternative text for main image" formControlName="imgAlt">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Alternative text for the main image</mat-label>
+            <input matInput name="ImageAlt" formControlName="imgAlt">
           </mat-form-field>
         </p>
 
         <div>
           
-          <mat-form-field>
-            <mat-select [(value)]="selectedTool" placeholder="Select new tool used" name="ToolSelection" >
+          <mat-form-field appearance="fill">
+            <mat-label>Select a new tool used</mat-label>
+            <mat-select [(value)]="selectedTool" name="ToolSelection" >
               <mat-option *ngFor="let tool of allTools" [value]="tool.name">{{tool.name}}</mat-option>
             </mat-select>
           </mat-form-field>
 
-          <button mat-raised-button (click)="addToolToProject()">Add the tool to the project</button>
+          <button mat-raised-button (click)="addToolToProject()" class="small-button">Add the tool to the project</button>
           {{projectAddToolMessage}}
 
           <div *ngIf="toolsInProject" name="Tools list">
@@ -57,25 +60,26 @@
         </div>
 
         <p>
-          <mat-form-field class="full-width">
-
-              <textarea matInput #description name="description" maxlength="256" placeholder="A short description" matTextareaAutosize matAutosizeMinRows="3" formControlName="description"></textarea>
+          <mat-form-field class="full-width" appearance="fill">
+              <mat-label>A short description</mat-label>
+              <textarea matInput #description name="description" maxlength="256" matTextareaAutosize matAutosizeMinRows="3" formControlName="description"></textarea>
               <mat-hint align="end">{{description.value.length}} / 256</mat-hint>
           </mat-form-field>
         </p>
 
         <p>
-          <mat-form-field class="full-width">
-
-              <textarea matInput name="details" #details placeholder="Detailed description" maxlength="512" matTextareaAutosize matAutosizeMinRows="6" formControlName="details"></textarea>
+          <mat-form-field class="full-width" appearance="fill">
+              <mat-label>Detailed description</mat-label>
+              <textarea matInput name="details" #details maxlength="512" matTextareaAutosize matAutosizeMinRows="6" formControlName="details"></textarea>
               <mat-hint align="end">{{details.value.length}} / 512</mat-hint>
           </mat-form-field>
         </p>
 
         <div>
           <!--Possible extra images:-->
-          <mat-form-field class="full-width">
-            <input matInput #extraImgInput type="url" name="extraImgs" label="extraImgs" placeholder="Url for possible extra image">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Url for possible extra image</mat-label>
+            <input matInput #extraImgInput type="url" name="extraImgs" label="extraImgs">
             <!-- TODO: URL Validator tälle-->
           </mat-form-field>
           <button mat-raised-button class="small-button" (click)="addExtraImg(extraImgInput.value); extraImgInput.value = '';">Add the extra image</button>
@@ -95,8 +99,9 @@
 
         <div>
           <!-- Possible extra links -->
-          <mat-form-field class="full-width">
-            <input matInput #extraUrlInput type="url" name="extraUrls" label="extraUrls" placeholder="Url for possible extra link">
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Url for possible extra link</mat-label>
+            <input matInput #extraUrlInput type="url" name="extraUrls" label="extraUrls">
             <!-- TODO: URL Validator tälle-->
           </mat-form-field>
           <button mat-raised-button class="small-button" (click)="addExtraUrl(extraUrlInput.value); extraUrlInput.value = ''; ">Add the extra link</button>
@@ -133,8 +138,9 @@
         <h1>Add a Tool</h1>
         <form [formGroup]="toolForm">
           
-          <mat-form-field hintLabel="Required">
-            <input matInput placeholder="Tool" class="form-control" formControlName="name">
+          <mat-form-field hintLabel="Required" appearance="fill">
+            <mat-label>Tool's name</mat-label>
+            <input matInput class="form-control" formControlName="name">
           </mat-form-field>
           
           <div>

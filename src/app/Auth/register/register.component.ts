@@ -75,7 +75,10 @@ export class RegisterComponent implements OnInit {
                                                                 {
                                                                   
                                                                   console.log(error);
-                                                                  this.alertMessage = error.statusText;
+                                                                  if (error.status == 400){
+                                                                    this.alertMessage = `Username ${this.registerForm.value.username} already in use.`;
+                                                                  }
+                                                                  //this.alertMessage = error.statusText;
                                                                 
                                                                 },
                                                                 () => this.router.navigate(['login']));

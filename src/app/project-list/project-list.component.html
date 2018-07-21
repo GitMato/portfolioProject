@@ -2,9 +2,10 @@
 
 <div class="container color-bright-blue min-width-450">
   <h1 style="opacity: 0.8; padding: 1.5em 1.5em 0em 1.5em;" class="project-header">Projects</h1>
-  <ul [@list]="projects?.length">
+  <!--<ul [@list]="projects?.length">-->
+  <ul>
     <!-- Tästä listasta oikeesti dynaaminen -->
-    <li @projectTrigger class="card" *ngFor="let project of projects">
+    <li  class="card" *ngFor="let project of projects">
       <!-- dynaaminen projects osoite-->
       
       <a [routerLink]="['/projects', project?.id]">

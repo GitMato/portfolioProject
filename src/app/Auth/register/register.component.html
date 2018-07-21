@@ -12,8 +12,9 @@
         <h1 class="form-header">Register</h1>
         <form [formGroup]="registerForm" class="form">
         <div>
-            <mat-form-field>
-                <input matInput placeholder="Username" class="form-control" formControlName="username">
+            <mat-form-field appearance="outline">
+                <mat-label>Username</mat-label>
+                <input matInput class="form-control" formControlName="username">
             </mat-form-field>
 
             <mat-card *ngIf="registerForm.controls['username'].errors && !registerForm.controls['username'].pristine" class="error-msg">
@@ -25,8 +26,9 @@
 
         </div>
         <div>
-            <mat-form-field>
-                <input matInput placeholder="Password" name="password" type="password" class="form-control" formControlName="password1">
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput name="password" type="password" class="form-control" formControlName="password1">
 
                 <!--<mat-error *ngIf="registerForm.controls['password1'].errors">{{getPasswordErrorMessage(password1)}}</mat-error>-->
 
@@ -50,8 +52,9 @@
 
         </div>
         <div>
-            <mat-form-field  >
-                <input matInput  placeholder="Confirm password" name="confirmPassword" type="password" class="form-control" formControlName="password2">
+            <mat-form-field appearance="outline" >
+                <mat-label>Confirm password</mat-label>
+                <input matInput name="confirmPassword" type="password" class="form-control" formControlName="password2">
             </mat-form-field>
 
             <!-- tapa 1.-->

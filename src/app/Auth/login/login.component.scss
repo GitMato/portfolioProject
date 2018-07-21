@@ -24,3 +24,13 @@ button{
 .form-header{
     padding: 1em 0em 0em 1em;
 }
+
+mat-form-field{
+    width: 85%;
+}
+
+.error-msg{
+    background-color: salmon;
+    max-width: 85%;
+    margin-bottom: 1em;
+}
