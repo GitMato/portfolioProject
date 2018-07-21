@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
@@ -9,6 +9,7 @@ import { Project, Tool } from '../project';
 
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { DataStorageService } from '../data-storage.service';
+import { Subscription } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-project-modify',
@@ -16,7 +17,7 @@ import { DataStorageService } from '../data-storage.service';
   styleUrls: ['./project-modify.component.scss'],
 })
 
-export class ProjectModifyComponent implements OnInit {
+export class ProjectModifyComponent implements OnInit, OnDestroy {
 
   // messages for notification
   alertMessage: string;
@@ -30,6 +31,7 @@ export class ProjectModifyComponent implements OnInit {
   toolForm: FormGroup;
 
   allTools: Tool[] = [];
+  allToolsSub: Subscription;
 
   selectedTool: string;
   toolsInProject: Tool[] = [];
@@ -57,7 +59,7 @@ export class ProjectModifyComponent implements OnInit {
               private dataStorageService: DataStorageService) { 
     //this.toolsInProject = [];
     //this.toolIdsInProject = [];
-    this.dataStorageService.allToolsObs.subscribe( value => { this.allTools = value; });
+    this.allToolsSub = this.dataStorageService.allToolsObs.subscribe( value => { this.allTools = value; });
 
     this.createForms();
   }
@@ -292,5 +294,8 @@ export class ProjectModifyComponent implements OnInit {
     }
   }
   
+  ngOnDestroy(){
+    this.allToolsSub.unsubscribe();
+  }
 
 }

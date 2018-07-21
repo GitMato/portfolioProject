@@ -1,10 +1,10 @@
-import { Component, OnInit, AfterContentInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Inject, OnDestroy } from '@angular/core';
 
 import { Project, Tool } from '../project';
 import { ProjectService } from '../project.service';
 import { ToolService } from '../tool.service';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ActivatedRoute, Router } from '@angular/router';
 // The location is an Angular service for interacting with the browser. You'll use it later to navigate back to the view that navigated here.
@@ -20,7 +20,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
   styleUrls: ['./projectdetail.component.scss'],
   providers: []
 })
-export class ProjectdetailComponent implements OnInit {
+export class ProjectdetailComponent implements OnInit, OnDestroy {
 
 
   project: Project;
@@ -29,6 +29,7 @@ export class ProjectdetailComponent implements OnInit {
   projectId: number;
 
   allTools: Tool[] = [];
+  allToolsSub: Subscription;
   toolsUsed: Tool[] = [];
 
   constructor(
@@ -40,7 +41,7 @@ export class ProjectdetailComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private dataStorageService: DataStorageService ) {
-      this.dataStorageService.allToolsObs
+      this.allToolsSub = this.dataStorageService.allToolsObs
         .subscribe( 
           value => {
             this.allTools = value;
@@ -139,8 +140,13 @@ export class ProjectdetailComponent implements OnInit {
     //this.projectService.deleteProject(this.projectId);
     //this.router.navigate(['/projects/']);
   }  
-    openDialog(url: string): void{
-  
-      const dialogRef = this.dialog.open(ImageDialogComponent, { maxWidth: '90%', maxHeight: '90%', data: {url: url}});
-    }
+  openDialog(url: string): void{
+
+    const dialogRef = this.dialog.open(ImageDialogComponent, { maxWidth: '90%', maxHeight: '90%', data: {url: url}});
+  }
+
+  ngOnDestroy(){
+    this.allToolsSub.unsubscribe();
+  }
+
 }

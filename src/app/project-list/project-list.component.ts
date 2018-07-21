@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 //import {MatCardModule} from '@angular/material/card';
@@ -9,6 +9,7 @@ import { ProjectService } from '../project.service';
 // Animations
 import {trigger, style, transition, animate, keyframes, query, stagger, state, animateChild} from '@angular/animations';
 import { DataStorageService } from '../data-storage.service';
+import { Subscription } from '../../../node_modules/rxjs';
 
 
 @Component({
@@ -25,12 +26,12 @@ import { DataStorageService } from '../data-storage.service';
       ]), 
       
       // toistaiseksi käyttämätön
-      transition(':leave', [
-        animate(200, style({transform: 'translateX(100%'}))
-      ])
+      // transition(':leave', [
+      //   animate(200, style({transform: 'translateX(100%'}))
+      // ])
       ]),
 
-      // Jotta animoinnit ei tulisi yhtäaikaa EI TOIMI ATM - optianal true lisätty toistaiseksi
+      //Jotta animoinnit ei tulisi yhtäaikaa EI TOIMI ATM - optianal true lisätty toistaiseksi
       trigger('list', [
         transition(':enter', [
           query('@projectTrigger', stagger(100, animateChild({delay: 100})), {optional: true})
@@ -39,9 +40,10 @@ import { DataStorageService } from '../data-storage.service';
     ]
 })
 
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent implements OnInit, OnDestroy {
   
   projects: Project[] = [];
+  allProjectsSub: Subscription;
   
   constructor(//private route: ActivatedRoute, 
               private router: Router, 
@@ -49,7 +51,7 @@ export class ProjectListComponent implements OnInit {
               private dataStorageService: DataStorageService) {
     //this.route.params.subscribe(res => console.log(res.id));
 
-    this.dataStorageService.allProjectsObs
+    this.allProjectsSub = this.dataStorageService.allProjectsObs
       .subscribe(
         allprojects => 
         {
@@ -79,6 +81,10 @@ export class ProjectListComponent implements OnInit {
   // getProjects (): void {
   //   this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
   // }
+
+  ngOnDestroy(){
+    this.allProjectsSub.unsubscribe();
+  }
 
 }
 

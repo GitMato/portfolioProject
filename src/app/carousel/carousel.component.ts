@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ContentChildren, QueryList, ElementRef, ViewChildren, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ContentChildren, QueryList, ElementRef, ViewChildren, ViewChild, Input, OnDestroy } from '@angular/core';
 
 // structural directive
 import { CarouselItemDirective, CarouselItemElement } from './carouselItemDirective';
@@ -8,7 +8,7 @@ import { ProjectService } from '../project.service';
 
 import { AnimationPlayer, AnimationBuilder, AnimationFactory, animate, style } from '@angular/animations';
 
-import { interval, TimeInterval, Observable } from 'rxjs';
+import { interval, TimeInterval, Observable, Subscription } from 'rxjs';
 import { DataStorageService } from '../data-storage.service';
 
 
@@ -17,7 +17,7 @@ import { DataStorageService } from '../data-storage.service';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
 })
-export class CarouselComponent implements AfterViewInit, OnInit {
+export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
 
   @ContentChildren(CarouselItemDirective) items : QueryList<CarouselItemDirective>;
 
@@ -32,15 +32,19 @@ export class CarouselComponent implements AfterViewInit, OnInit {
   private itemWidth : number = 400;
   private currentSlide: number = 0;
 
-  projects: Project[];
+  private projects: Project[];
 
   private carouselInterval = interval(5000);
+
+  private intervalSubscription: Subscription;
+  private dataStorageServiceSub: Subscription;
+  
 
   constructor(//private projectService: ProjectService, 
               private builder : AnimationBuilder,
               private dataStorageService: DataStorageService) 
               { 
-                this.dataStorageService.allProjectsObs
+                this.dataStorageServiceSub = this.dataStorageService.allProjectsObs
                   .subscribe(
                     allProjects => 
                     {
@@ -54,7 +58,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
                 
               }
 
-  async ngOnInit() {
+  ngOnInit() {
     //this.projectService.getAllProjects().subscribe(projects => this.projects = projects);
     
     // if (this.projectService.allProjects.length == 0){
@@ -75,7 +79,8 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     // this.carouselInterval.subscribe(n =>
     //   console.log(`It's been ${n} seconds since subscribing!`));
 
-    this.carouselInterval.subscribe(() => this.next());
+    this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+    //this.interval = Observable.interval(1000).subscribe();
 
   }
 
@@ -86,6 +91,8 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     // this.carouselWrapperStyle = {
     //  width: `${this.itemWidth}px`, height: `${this.itemWidth}px`
     // }
+
+    
   }
 
   isCurrentSlide(compareSlide: number){
@@ -141,5 +148,10 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     this.player = myAnimation.create(this.carousel.nativeElement);
     this.player.play();
+   }
+
+   ngOnDestroy(){
+    this.intervalSubscription.unsubscribe();
+    this.dataStorageServiceSub.unsubscribe();
    }
 }
