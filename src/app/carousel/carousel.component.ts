@@ -104,6 +104,11 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
     }
   }
 
+  nextButton(){
+    this.intervalSubscription.unsubscribe();
+    this.next();
+    this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+  }
 
   // Interval should be reset or something everytime next() is called
   next() {
@@ -128,6 +133,11 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
     this.player.play();
   }
 
+  prevButton(){
+    this.intervalSubscription.unsubscribe();
+    this.prev();
+    this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+  }
 
   prev() {
 

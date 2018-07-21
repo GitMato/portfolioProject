@@ -1,5 +1,7 @@
 <div class="carousel-wrapper">
-<button mat-button (click)="prev()" class="controlButton faded">Previous</button>
+
+<button mat-button (click)="prevButton()" class="controlButton faded">Previous</button>
+
 <section class="carousel-wrapper  centered" [ngStyle]="carouselWrapperStyle">
   <ul class="carousel-inner" #carousel>
     <div *ngFor="let project of projects;">
@@ -39,7 +41,7 @@
 </section>
 
 
-<button mat-button (click)="next()" class="controlButton faded">Next</button>
+<button mat-button (click)="nextButton()" class="controlButton faded">Next</button>
 </div>
 
 <!-- Circles which indicates the steps of the carousel -->
