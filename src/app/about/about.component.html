@@ -1,58 +1,35 @@
-<p>
-  Tästä takaisin home komponenttiin <a href="" (click)="sendMeHome()"><strong>Take me back</strong></a>
-</p>
-<br>
-<div>
-  <div><h1><strong>Tomi Mannila</strong></h1></div>
-  <br>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid animi molestiae commodi quia dicta officiis nihil voluptatum distinctio harum expedita quas eveniet laboriosam, hic inventore voluptates natus temporibus voluptatem?
-</div>
-<!--<img src="http://atomi.mbnet.fi/naytto/GalaxyQuest/html/DoxygenPIC.png" alt="pic">-->
-
-<div class="section feedback" style="text-align: center;">
-
-  <div><h1>Palaute</h1></div>
-
-  <form name="Feedback">
-    <div *ngIf="checkForm(1)">
-    <!--<div>-->
-      <input type="text" class="feedback-input" name="Date" placeholder="Date" id="1" [(ngModel)]="formDate">
-    </div>
-    <div *ngIf="checkForm(2)">
-      <input type="text" class="feedback-input" name="Email" placeholder="Your Email" id="2" [(ngModel)]="formEmail" email>
-    </div>
-    <div *ngIf="checkForm(3)">
-      <input type="text" class="feedback-input" name="Name" placeholder="Your Name" id="3" [(ngModel)]="formName">
-    </div>
-    <div *ngIf="checkForm(4)">
-      <input type="text" class="feedback-input" name="Message" placeholder="Neljäs" id="4" [(ngModel)]="formMessage"> 
-    
-    </div>
+<div class="container">
+  <mat-card class="text-container color-bright-blue">
+    <div><h1><strong>Hi!</strong> My name is <strong>Tomi Mannila</strong></h1></div>
+    <p class="color-white">
+    I have been faschinated by technology and its advancements all my life. For that reason I went to study in Tampere University of technology. 
+    I main in <strong>communications engineering</strong> and minor in <strong>software systems</strong>.
+    </p>
+    <p class="color-white">
+    My character is joyful, empathic and humble.
+    I enjoy creating: whether it was lasercutting, fiddling with my own little projects or programming.
+    Seeing my own handiwork in the working result gives me motivation to get even better.
+    </p>
+    <p class="color-white">
+    Teamworking is something that I think it's very important. In a team you can always get everyone's best features and make a best possible result. 
+    By working as a team, you can always learn something from each other. Teamspirit also helps with problematic situations and getting to the team's goals.
+    </p>
+    <p class="color-white">
+      <i>"If you don't know how to do it, learn to do it!"</i>
+    </p>
     <div>
-    <input type="submit" value="Previous" (click)="previousFormSection()" [disabled]="checkForm(1)">
-    <input type="submit" value="nextBtnValue" name="next-btn" (click)="nextFormSection()" [disabled]="disableButton()">
+      <h1>You can find me in</h1>
+      <ul class="link-list">
+        <li><a class="link" href="https://github.com/GitMato">GitHub</a></li>
+        <li><a class="link" href="https://www.linkedin.com/in/tomi-mannila/">LinkedIn</a></li>
+        
+        <li><a class="link" href=""></a></li>
+        <li><a class="link" href=""></a></li>
+        <li><a class="link" href=""></a></li>
+      </ul>
+      
+      <h1>Or</h1>
+      <li><a class="link" href="mailto:someone@example.com">Email me</a></li><!-- TODO: edit this-->
     </div>
-  </form>
-
-  <!-- Circles which indicates the steps of the form: -->
-  <div style="text-align:center;margin-top:40px;">
-    <span class="step active" *ngIf="checkFormProgress(1); else setActive"></span>
-    <span class="step" *ngIf="checkFormProgress(2); else setActive"></span>
-    <span class="step" *ngIf="checkFormProgress(3); else setActive"></span>
-    <span class="step" *ngIf="checkFormProgress(4); else setActive"></span>
-    <ng-template #setActive><span class="step active"></span></ng-template>
-  </div>
-
-  <div>
-    <p>Date: {{ formDate }}</p>
-    <p>Email: {{ formEmail }}</p>
-    <p>Name: {{ formName }}</p>
-    <p>Message: {{ formMessage }}</p>
-  </div>
-  
-  <!--
-  <div>
-    <p>Test: {{today | date:'full':'':'fi' }}</p>
-  </div>
-  -->
+  </mat-card>
 </div>
