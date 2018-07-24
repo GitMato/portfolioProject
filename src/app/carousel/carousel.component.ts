@@ -160,6 +160,25 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
     this.player.play();
    }
 
+   goToSlide(index: number){
+
+    // unsubscribe so the interval wont trigger the next() -method
+    this.intervalSubscription.unsubscribe();
+
+    this.currentSlide = (index % this.projects.length);
+    const offset = this.currentSlide * this.itemWidth;
+
+    const myAnimation : AnimationFactory = this.builder.build([
+      animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
+    ]);
+
+    this.player = myAnimation.create(this.carousel.nativeElement);
+    this.player.play();
+
+    // subscripbe back to interval so the timer has been reset
+    this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+   }
+
    ngOnDestroy(){
     this.intervalSubscription.unsubscribe();
     this.dataStorageServiceSub.unsubscribe();
