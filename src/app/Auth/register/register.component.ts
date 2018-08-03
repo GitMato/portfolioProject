@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 
 
 
-import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, Identity } from '../../auth.service';
 import { Router } from '@angular/router';
-import { lowercaseValidator, uppercaseValidator, numberValidator, passwordMatchValidator } from '../../project';
+import { lowercaseValidator, uppercaseValidator, numberValidator, passwordMatchValidator } from '../../custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -22,10 +22,17 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formbuilder: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router) { 
+
+                this.createRegisterForm();
+                
+              }
 
   ngOnInit() {
-    this.createRegisterForm();
+    //this.createRegisterForm();
+    //this.registerForm.controls['password2'].markAsTouched();
+    //this.registerForm.controls['password2'].setErrors({'invalid': true});
+    //console.log(this.registerForm.controls['password2'].errors);
   }
 
   createRegisterForm(){
@@ -67,6 +74,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerNewUser(){
+    // TODO: ota isSamaPassword veke
     if (this.isSamePassword()){
       this.newUser = { username: this.registerForm.value.username, 
                         password: this.registerForm.value.password1};

@@ -1,15 +1,22 @@
-<div class="carousel-wrapper">
+<div *ngIf="projects.length == 0">
+    <mat-card class="project-card color-light flex">
+        <img mat-card-lg-image class="loading-pic"  src="/assets/images/loading.svg" alt="Projects not found">
+        <mat-card-header class="project-header">
+            <mat-card-title><div class="carousel-card-title"><h1 class="visible">Projects not found</h1></div></mat-card-title>
+        </mat-card-header>
+    </mat-card>
+</div>
+<div class="carousel-wrapper" *ngIf="projects.length != 0">
 
 <button mat-button (click)="prevButton()" class="controlButton faded">Previous</button>
 
 <section class="carousel-wrapper  centered" [ngStyle]="carouselWrapperStyle">
   <ul class="carousel-inner" #carousel>
+
     <div *ngFor="let project of projects;">
       <li class="carousel-item" [ngStyle]="carouselItemStyle">
-        <!--<ng-container [ngTemplateOutlet]="project.tpl">-->
 
-          <!-- Tähän karusellin sisältö -->
-          <!--<img [ngStyle]="carouselItemStyle" src="{{project.imgUrl}}">-->
+          <!-- Karusellin sisältö -->
           <a [routerLink]="['/projects', project?.id]">
             <mat-card class="project-card color-light flex">
 
@@ -19,27 +26,14 @@
                   <!--<div mat-card-avatar class="example-header-image"></div>-->
                   <mat-card-title><div class="carousel-card-title"><h1 class="visible">{{project?.name}}</h1></div></mat-card-title>
               </mat-card-header>
-              <!--<mat-card-content>
-                <p>
-                  {{project.description}}
-                </p>
-              </mat-card-content>-->
+
             </mat-card>
           </a>
-
-
-
-
-
-
-        <!--</ng-container>-->
-        <!--<img src="{{project.imgUrl}}">-->
       </li>
     </div>
   </ul>
 
 </section>
-
 
 <button mat-button (click)="nextButton()" class="controlButton faded">Next</button>
 </div>
@@ -48,8 +42,3 @@
 <div style="text-align:center;margin-top:40px;" >
   <span class="step" *ngFor="let project of projects; let i = index;" [attr.id] ="i" (click)="goToSlide(i)" [ngClass]="{'active': isCurrentSlide(i)}"></span>
 </div>
-<!-- 
-<div class="centered">
-  <button (click)="prev()">Previous</button>
-  <button (click)="next()">Next</button>
-</div> -->

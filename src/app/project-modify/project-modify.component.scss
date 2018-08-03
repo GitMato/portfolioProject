@@ -2,10 +2,6 @@
     padding: 0em 0em 0em 0;
 }
 
-.color-light {
-    background: rgb(136, 160, 177);
-}
-
 .full-width {
     width: 100%;
 }
@@ -33,4 +29,13 @@ h1{
 
 .small-button{
     margin-bottom: 1em;
+}
+
+mat-label{
+    font-family: 'Raleway', 'Arial' !important;
+    color: whitesmoke;
+}
+
+.color-whitesmoke{
+    color: whitesmoke;
 }

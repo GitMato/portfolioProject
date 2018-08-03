@@ -4,6 +4,7 @@
     max-width: 70%;
     min-width: 400px;
     margin: auto;
+    font-family: 'Raleway', 'Arial';
 }
 
 .link{
@@ -14,13 +15,21 @@
     opacity: 1;
 }
 
-.link-list{
-    
-}
-
 .color-white{
     color: whitesmoke;
     text-shadow: 0 1px 1px #003A61;
     opacity: 1;
+    //font-family: 'Raleway', 'Arial';
     
+    
+}
+
+.center-text{
+    text-align: center;
+    font-family: 'Raleway', 'Arial';
+}
+
+.img-me{
+    max-width: 400px;
+    max-height: 400px;
 }

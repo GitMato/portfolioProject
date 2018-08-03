@@ -3,6 +3,8 @@
     font-size: 18px;
     margin-bottom: 1em;
     min-width: 300px;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .form{
@@ -45,4 +47,9 @@ ul{
 
 .valid {
     color: greenyellow;
+}
+
+mat-form-field{
+    max-width: 100%;
+    width: 100%;
 }

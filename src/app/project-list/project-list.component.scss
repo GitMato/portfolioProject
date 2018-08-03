@@ -63,7 +63,7 @@ p {
 }
 
 .project-content{
-    font-size: 16px;
+    font-size: 17px;
     opacity: 0.8;
 }
 
@@ -74,4 +74,12 @@ p {
 .min-width-450{
     min-width: 450px;
     max-width: 1150px;
+}
+
+.container{
+    padding-bottom: 1em;
+}
+
+mat-card{
+    font-family: 'Raleway', 'Arial';
 }

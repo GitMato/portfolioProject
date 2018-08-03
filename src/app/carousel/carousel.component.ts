@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ContentChildren, QueryList, ElementRef, ViewChildren, ViewChild, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ContentChildren, QueryList, ElementRef, ViewChildren, ViewChild, Input, OnDestroy, Output } from '@angular/core';
 
 // structural directive
 import { CarouselItemDirective, CarouselItemElement } from './carouselItemDirective';
@@ -18,6 +18,8 @@ import { DataStorageService } from '../data-storage.service';
   styleUrls: ['./carousel.component.scss'],
 })
 export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
+
+  @Output() alertMessage: string;
 
   @ContentChildren(CarouselItemDirective) items : QueryList<CarouselItemDirective>;
 
@@ -49,7 +51,8 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
                     allProjects => 
                     {
                       this.projects = allProjects;
-                    }
+                    },
+                    () => console.log("Error loading projects.")
                 );
 
                 if (this.projects.length == 0){
@@ -78,8 +81,9 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
 
     // this.carouselInterval.subscribe(n =>
     //   console.log(`It's been ${n} seconds since subscribing!`));
-
-    this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+    if(this.projects.length != 0){
+      this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+    }
     //this.interval = Observable.interval(1000).subscribe();
 
   }
@@ -180,7 +184,11 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
    }
 
    ngOnDestroy(){
-    this.intervalSubscription.unsubscribe();
+    if (this.intervalSubscription != null){
+      this.intervalSubscription.unsubscribe();
+    }
     this.dataStorageServiceSub.unsubscribe();
+
+    
    }
 }

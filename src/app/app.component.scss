@@ -11,6 +11,7 @@
     //background: rgb(187, 228, 248);
     background:rgb(50, 56, 59);
     margin-top: 1em;
+    //overflow: hidden;
 }
 
 li.navigation-item {
@@ -26,6 +27,7 @@ header.nav {
     background: rgb(50, 56, 59);
     //background: rgb(187, 228, 248);
     padding: 1% 0% 1% 1%;
+    min-width: 620px;
 }
 
 
@@ -47,4 +49,10 @@ header.nav {
 
 header{
     margin-bottom: 1em;
+}
+
+.body-container{
+    min-height: 93vh;
+    
+    padding-bottom: 1em;
 }

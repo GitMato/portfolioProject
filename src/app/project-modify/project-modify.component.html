@@ -49,7 +49,8 @@
 
           <div *ngIf="toolsInProject" name="Tools list">
             <mat-list class="toollist">
-              <h3 mat-subheader>Tools in project:</h3>
+              <h3 mat-subheader *ngIf="toolsInProject.length == 0" class="color-whitesmoke"><strong>No tools in this project.</strong></h3>
+              <h3 mat-subheader *ngIf="toolsInProject.length != 0" class="color-whitesmoke"><strong>Tools in project:</strong></h3>
               <mat-list-item *ngFor="let tool of toolsInProject; let index = index;" >
                 <!--<mat-icon mat-list-icon>folder</mat-icon>-->
                 <h4 mat-line>{{tool.name}}</h4>

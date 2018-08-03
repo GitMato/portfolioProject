@@ -21,6 +21,7 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
 
   // messages for notification
   alertMessage: string;
+  alertText_Forbidden: string = "403 - Forbidden. Only Admins have authorization for modifying projects/tools.";
   successMessage: string;
   
 
@@ -104,7 +105,12 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
   async addNewProject(){
     console.log(this.projectForm.value);
     await this.projectService.insertProject(this.projectForm.value).subscribe(() => {},
-                                                                        error => console.log(error), 
+                                                                        //error => console.log(error),
+                                                                        error => {
+                                                                          if (error.status == 403){
+                                                                            this.alertMessage = this.alertText_Forbidden;
+                                                                          }
+                                                                        }, 
                                                                         () => {
                                                                           //console.log("New project created!");
                                                                           //this.projectService.updateAllProjectsVar();
@@ -121,7 +127,12 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
   async addNewTool(){
     //this.toolMessage = "New tool added."
     await this.toolService.insertTool(this.toolForm.value).subscribe(() => {},
-                                                                    error => console.log(error), 
+                                                                    //error => console.log(error), 
+                                                                    error => {
+                                                                      if (error.status == 403){
+                                                                        this.alertMessage = this.alertText_Forbidden;
+                                                                      }
+                                                                    }, 
                                                                     () => {
                                                                       //this.getToolsFromDb();
                                                                       this.successMessage = "New tool created!"
@@ -233,7 +244,12 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
   updateExistingProject(){
     this.projectService.updateProject(this.projectToModify.id, this.projectForm.value)
       .subscribe(() => {},
-                error => console.log(error), 
+                //error => console.log(error), 
+                error => {
+                  if (error.status == 403){
+                    this.alertMessage = this.alertText_Forbidden;
+                  }
+                }, 
                 () => {
                   this.dataStorageService.updateProjects();
                   console.log("Project updated!");
@@ -251,7 +267,12 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
 
   updateExistingTool(){
     this.toolService.updateTool(this.toolToModify.id, this.toolForm.value).subscribe(() => {},
-                                                                  error => console.log(error), 
+                                                                  //error => console.log(error),
+                                                                  error => {
+                                                                    if (error.status == 403){
+                                                                      this.alertMessage = this.alertText_Forbidden;
+                                                                    }
+                                                                  },  
                                                                   () => {
                                                                     console.log("Tool updated!");
                                                                     //this.toolService.updateAllToolsVar();

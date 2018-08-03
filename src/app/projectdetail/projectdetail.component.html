@@ -1,4 +1,4 @@
-
+<app-notification [notificationAlert]="alertMessage"></app-notification>
 <div *ngIf="project" class="container">
   <!-- If logged in-->
   <button mat-raised-button (click)="modifyThisProject()" *ngIf="authService.isLoggedIn" style="margin-right: 2em;" class="btn">Modify project</button>

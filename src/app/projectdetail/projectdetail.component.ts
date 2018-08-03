@@ -22,6 +22,7 @@ import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 })
 export class ProjectdetailComponent implements OnInit, OnDestroy {
 
+  alertMessage: string;
 
   project: Project;
 
@@ -48,7 +49,6 @@ export class ProjectdetailComponent implements OnInit, OnDestroy {
             //this.dataStorageService.updateTools();
           },
       error => console.log(error) );
-
 
     }
 
@@ -83,9 +83,16 @@ export class ProjectdetailComponent implements OnInit, OnDestroy {
   getProject(): void {
     this.projectId = +this.route.snapshot.paramMap.get('id');
     console.log("Project id from address: " + this.projectId);
+    console.log(this.route.snapshot.paramMap.get('id'));
     //console.log(typeof(id));
     this.projectService.getProject(this.projectId).subscribe(project => this.project = project,
-                                                            error => console.log(error),
+                                                            error => { 
+                                                              //console.log(error);
+                                                              if(error.status == 400){
+                                                                this.router.navigate(['**']);
+                                                              }
+                                                              
+                                                            },
                                                             () => this.findToolsForProject()
                                                             );
     //console.log(this.project.id, this.project.name);
@@ -128,7 +135,12 @@ export class ProjectdetailComponent implements OnInit, OnDestroy {
     //alert();
     if (confirm("Do you really want to delete this project?")){
       this.projectService.deleteProject(this.projectId).subscribe(()=>{},
-                                        error => (console.log(error)), 
+                                        //error => (console.log(error)), 
+                                        error => {
+                                          if (error.status == 403){
+                                            this.alertMessage = "403 - Forbidden. Only Admins have authorization for modifying projects/tools.";
+                                          }
+                                        }, 
                                         () => { 
                                                 //this.projectService.updateAllProjectsVar();
                                                 this.dataStorageService.updateProjects();

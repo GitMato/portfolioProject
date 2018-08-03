@@ -21,27 +21,29 @@
 -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<header class="nav">
+<div class="body-container">
+  <header class="nav">
 
-  <nav>
-    <div style="display: inline-flex; flex-direction: row;">
-      <ul class="navigation">
-        <li class="navigation-item"><a routerLink="" (click)="setTitle('Home')">Home</a></li>
-        <li class="navigation-item"><a routerLink="projects" (click)="setTitle('My Projects')">My Projects</a></li>
-        <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
-      </ul>
-      <ul class="navigation align-right">
-        <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="modify">Modify</a></li>
-        <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="" (click)="logOut()">Logout</a></li>
-        <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="login">Login</a></li>
-        <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="register">Register</a></li>
-      </ul>
-    </div>
-  </nav>
-</header>
-<!--<div class="container"><app-home></app-home></div>-->
-<!--<div >-->
-<router-outlet></router-outlet>
-
-<!--</div>-->
+    <nav>
+      <div style="display: inline-flex; flex-direction: row;">
+        <ul class="navigation">
+          <li class="navigation-item"><a routerLink="" (click)="setTitle('Home')">Home</a></li>
+          <li class="navigation-item"><a routerLink="projects" (click)="setTitle('My Projects')">Projects</a></li>
+          <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
+        </ul>
+        <ul class="navigation align-right">
+          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="modify">Modify</a></li>
+          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="" (click)="logOut()">Logout</a></li>
+          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="login">Login</a></li>
+          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="register">Register</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!--<div class="container"><app-home></app-home></div>-->
+  <!--<div >-->
+  <router-outlet></router-outlet>
+</div>
+  <!--</div>-->
 <footer class="footer center">Made by Tomi Mannila 2018</footer>
+

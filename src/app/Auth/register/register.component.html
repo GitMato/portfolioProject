@@ -4,14 +4,14 @@
 
     <mat-card class="color-bright-blue information-text">
         <p>The purpose of the register-view and being able to register is just to demonstrate that it actually works.</p>
-        <p>Default registered users are not authorized to modify projects.</p>
+        <p>Registered users are not authorized to modify projects by default.</p>
 
     </mat-card>
 
     <div class="color-light center">
         <h1 class="form-header">Register</h1>
         <form [formGroup]="registerForm" class="form">
-        <div>
+        <div class="form-field">
             <mat-form-field appearance="outline">
                 <mat-label>Username</mat-label>
                 <input matInput class="form-control" formControlName="username">
