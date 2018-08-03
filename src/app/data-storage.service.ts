@@ -22,7 +22,7 @@ export class DataStorageService {
               private projectService: ProjectService) { }
 
   async updateTools(){
-    await this.toolService.getAllTools().toPromise().then( newToolList => this.allTools.next(newToolList) );
+    await this.toolService.getAllTools().toPromise().then( newToolList => this.allTools.next(newToolList), () => console.log("Error in getting tools from API.") );
 
       // this.toolService.getAllTools()
       // .subscribe( 
@@ -42,7 +42,7 @@ export class DataStorageService {
 
   async updateProjects(){
 
-    await this.projectService.getAllProjects().toPromise().then ( newProjectList => this.allProjects.next(newProjectList) );
+    await this.projectService.getAllProjects().toPromise().then ( newProjectList => this.allProjects.next(newProjectList), () => console.log("Error in getting projects from API.") );
     
     // await this.projectService.getAllProjects()
     //   .subscribe( 
