@@ -56,15 +56,15 @@ registerLocaleData(localeFi, 'fi');
     LoginComponent,
     RegisterComponent,
     ProjectModifyComponent,
-    //TestViewComponent,
-    //TestViewChildComponent,
-    //TestViewChild2Component,
     RegisterComponent,
     ProjectsParentComponent,
     NotificationComponent,
     CarouselItemDirective,
     CarouselItemElement,
-    ImageDialogComponent
+    ImageDialogComponent,
+    TestViewComponent,
+    TestViewChildComponent,
+    TestViewChild2Component
   ],
   imports: [
     BrowserModule,
