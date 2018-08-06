@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of, Subscription } from 'rxjs';
 
-import { Tool } from './project';
+import { Tool, baseAPIURL } from './project';
 
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
@@ -16,7 +16,8 @@ export class ToolService {
 
   //allTools: Tool[] = [];
 
-  toolAPIURL = "http://localhost:5000/api/tools/";
+  //toolAPIURL = "http://localhost:5000/api/tools/";
+  toolAPIURL = baseAPIURL() + "/tools/";
 
   // headers = new HttpHeaders().set('Content-Type', 'application/json')
   //                           .append('Authorization', "Bearer " + localStorage.getItem('auth_token')

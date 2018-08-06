@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { Project } from './project';
+import { Project, baseAPIURL } from './project';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -19,7 +19,8 @@ export class ProjectService {
 
   //allProjects: Project[] = [];
 
-  projectAPIURL = "http://localhost:5000/api/projects/"; 
+  //projectAPIURL = "http://localhost:5000/api/projects/"; 
+  projectAPIURL = baseAPIURL() + "/projects/";
 
   // tämä sama project servicessa sekä toolservicessä
   // headers = new HttpHeaders().set('Content-Type', 'application/json')
