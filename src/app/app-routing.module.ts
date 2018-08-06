@@ -68,10 +68,10 @@ const routes: Routes = [
     component: RegisterComponent
   },
   // testi
-  {
-    path: 'testview',
-    component: TestViewComponent,
-  },
+  // {
+  //   path: 'testview',
+  //   component: TestViewComponent,
+  // },
   {
     path: '**',
     component: PagenotfoundComponent,
