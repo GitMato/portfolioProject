@@ -34,7 +34,7 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
   private itemWidth : number = 400;
   private currentSlide: number = 0;
 
-  private projects: Project[];
+  projects: Project[];
 
   private carouselInterval = interval(5000);
 
