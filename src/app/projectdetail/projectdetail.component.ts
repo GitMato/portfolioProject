@@ -139,6 +139,8 @@ export class ProjectdetailComponent implements OnInit, OnDestroy {
                                         error => {
                                           if (error.status == 403){
                                             this.alertMessage = "403 - Forbidden. Only Admins have authorization for modifying projects/tools.";
+                                          } else if(error.status == 401){
+                                            this.alertMessage = "401 - Unauthorized. Only Admins have authorization for modifying projects/tools.";
                                           }
                                         }, 
                                         () => { 

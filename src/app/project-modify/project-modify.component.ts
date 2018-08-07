@@ -22,6 +22,7 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
   // messages for notification
   alertMessage: string;
   alertText_Forbidden: string = "403 - Forbidden. Only Admins have authorization for modifying projects/tools.";
+  alertText_Unauthorized: string = "401 - Unauthorized. Only Admins have authorization for modifying projects/tools.";
   successMessage: string;
   
 
@@ -109,6 +110,8 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
                                                                         error => {
                                                                           if (error.status == 403){
                                                                             this.alertMessage = this.alertText_Forbidden;
+                                                                          } else if(error.status == 401){
+                                                                            this.alertMessage = this.alertText_Unauthorized;
                                                                           }
                                                                         }, 
                                                                         () => {
@@ -131,7 +134,9 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
                                                                     error => {
                                                                       if (error.status == 403){
                                                                         this.alertMessage = this.alertText_Forbidden;
-                                                                      }
+                                                                      } else if(error.status == 401){
+                                                                        this.alertMessage = this.alertText_Unauthorized;
+                                                                      } 
                                                                     }, 
                                                                     () => {
                                                                       //this.getToolsFromDb();
@@ -248,6 +253,8 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
                 error => {
                   if (error.status == 403){
                     this.alertMessage = this.alertText_Forbidden;
+                  } else if(error.status == 401){
+                    this.alertMessage = this.alertText_Unauthorized;
                   }
                 }, 
                 () => {
@@ -271,6 +278,8 @@ export class ProjectModifyComponent implements OnInit, OnDestroy {
                                                                   error => {
                                                                     if (error.status == 403){
                                                                       this.alertMessage = this.alertText_Forbidden;
+                                                                    } else if(error.status == 401){
+                                                                      this.alertMessage = this.alertText_Unauthorized;
                                                                     }
                                                                   },  
                                                                   () => {
