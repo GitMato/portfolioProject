@@ -4,6 +4,8 @@ import { Observable, of } from 'rxjs';
 
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 
+import { baseAPIURL } from './project';
+
 export interface Identity{
   username: string;
   password: string;
@@ -26,7 +28,8 @@ export class AuthService {
   // for storing the url where to redirect after logging in
   redirectUrl: string;
 
-  identityURL = "http://localhost:5000/api/identity";
+  //identityURL = "http://localhost:5000/api/identity";
+  identityURL = baseAPIURL() + "/identity";
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   jwtToken: string;
