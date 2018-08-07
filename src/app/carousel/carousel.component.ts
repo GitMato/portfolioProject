@@ -51,6 +51,9 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
                     allProjects => 
                     {
                       this.projects = allProjects;
+                      if (this.intervalSubscription == null){
+                        this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+                      }
                     },
                     () => console.log("Error loading projects.")
                 );
@@ -81,9 +84,11 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
 
     // this.carouselInterval.subscribe(n =>
     //   console.log(`It's been ${n} seconds since subscribing!`));
-    if(this.projects.length != 0){
-      this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
-    }
+
+    //if(this.projects.length != 0){
+    //  this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+    //}
+    
     //this.interval = Observable.interval(1000).subscribe();
 
   }
