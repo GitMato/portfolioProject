@@ -26,6 +26,6 @@ export function baseAPIURL(): string {
   if (isDevMode()){
     return 'http://localhost:5000/api';
   } else {
-    return 'portfolio-mato.herokuapp.com/api';
+    return 'portfolio-mato-api.herokuapp.com/api';
   }
 }
