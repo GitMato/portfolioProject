@@ -137,11 +137,11 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
        //animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
        animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
-
-    if (this.carousel.nativeElement != undefined){
-      this.player = myAnimation.create(this.carousel.nativeElement);
-      this.player.play();
-    }
+    this.createAnimationAndPlay(myAnimation);
+    // if (this.carousel.nativeElement != undefined){
+    //   this.player = myAnimation.create(this.carousel.nativeElement);
+    //   this.player.play();
+    // }
   }
 
   prevButton(){
@@ -167,10 +167,12 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
       animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
 
-    if (this.carousel.nativeElement != undefined){
-      this.player = myAnimation.create(this.carousel.nativeElement);
-      this.player.play();
-    }
+    this.createAnimationAndPlay(myAnimation);
+
+    // if (this.carousel.nativeElement != undefined){
+    //   this.player = myAnimation.create(this.carousel.nativeElement);
+    //   this.player.play();
+    // }
    }
 
    goToSlide(index: number){
@@ -185,11 +187,22 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
       animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
 
-    this.player = myAnimation.create(this.carousel.nativeElement);
-    this.player.play();
+    this.createAnimationAndPlay(myAnimation);
+
+    // if (this.carousel.nativeElement != undefined){
+    // this.player = myAnimation.create(this.carousel.nativeElement);
+    // this.player.play();
+    // }
 
     // subscripbe back to interval so the timer has been reset
     this.intervalSubscription = this.carouselInterval.subscribe(() => this.next());
+   }
+
+   createAnimationAndPlay(myAnimation: AnimationFactory){
+    if (this.carousel.nativeElement != undefined){
+      this.player = myAnimation.create(this.carousel.nativeElement);
+      this.player.play();
+    }
    }
 
    ngOnDestroy(){

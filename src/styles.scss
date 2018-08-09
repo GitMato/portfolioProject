@@ -10,7 +10,7 @@ body {
     padding: 0em;
     color:#fff;
     margin: 0;
-    min-width: 600px;
+    //min-width: 600px;
 }
 
 .color-light {
@@ -137,13 +137,14 @@ a {
         font-size: 70%;
         //display: block;
         max-width: 390px;
+        margin: 0em 0em 0em 0em !important;
     }
     .transform-left {
         transform-origin: left;
         
     }
     .transform-right {
-        transform-origin: right;
+        //transform-origin: right;
     }
 
 }
