@@ -24,18 +24,25 @@
 <div class="body-container">
   <header class="nav">
 
-    <nav>
-      <div style="display: inline-flex; flex-direction: row;">
-        <ul class="navigation">
-          <li class="navigation-item"><a routerLink="" (click)="setTitle('Home')">Home</a></li>
-          <li class="navigation-item"><a routerLink="projects" (click)="setTitle('My Projects')">Projects</a></li>
-          <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
-        </ul>
+    <nav class="min-width-600">
+      <div style="display: inline-flex; flex-direction: row;" class="nav-container">
+        
+          <ul class="navigation align-left">
+            
+            <li class="navigation-item"><a routerLink="" (click)="setTitle('Home')">Home</a></li>
+            <li class="navigation-item"><a routerLink="projects" (click)="setTitle('Projects')">Projects</a></li>
+            <li class="navigation-item"><a routerLink="about" (click)="setTitle('About')">About</a></li> <!-- testi-->
+            
+          </ul>
+        
+
         <ul class="navigation align-right">
-          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="modify">Modify</a></li>
-          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="" (click)="logOut()">Logout</a></li>
-          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="login">Login</a></li>
-          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="register">Register</a></li>
+          
+          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="modify" (click)="setTitle('Modify')">Modify</a></li>
+          <li class="navigation-item" *ngIf="isLoggedIn()"><a routerLink="" (click)="setTitle('Home'); logOut();">Logout</a></li>
+          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="login" (click)="setTitle('Login')">Login</a></li>
+          <li class="navigation-item" *ngIf="!isLoggedIn()"><a routerLink="register" (click)="setTitle('Register')">Register</a></li>
+          
         </ul>
       </div>
     </nav>

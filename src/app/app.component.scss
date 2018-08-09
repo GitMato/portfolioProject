@@ -1,4 +1,6 @@
-
+.min-width-600{
+    min-width: 600px;
+}
 
 .footer {
     position: relative;;
@@ -27,24 +29,36 @@ header.nav {
     background: rgb(50, 56, 59);
     //background: rgb(187, 228, 248);
     padding: 1% 0% 1% 1%;
-    min-width: 620px;
+    min-width: 585px;
 }
 
 
 .align-right {
     //position: relative;
     //display: block;
-    display: inline-flex;
-    margin-left: auto !important;
-    
+    //display: inline-flex;
+    //display: inline-block;
+    //margin-left: auto !important;
+    //margin-left: 
     //margin-right: 0;
     //position: relative;
     position: absolute;
     right: 0px;
-    width: 300px;
-    
+    //width: 300px;
+    //text-align: right;
+    //float: right;
+    //right: 0px;
+    //position: relative;
     //text-align: right;
     //padding: 10px;
+    //width: 70%;
+    //justify-content: right;
+    //display: flex;
+}
+
+.align-left{
+    float: left;
+    justify-content: right;
 }
 
 header{
@@ -55,4 +69,15 @@ header{
     min-height: 93vh;
     
     padding-bottom: 1em;
+}
+
+.navigation{
+    //display: inline;
+    
+    
+}
+
+.nav-container {
+    min-width: 550px;
+    text-align: center;
 }

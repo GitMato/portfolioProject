@@ -10,6 +10,7 @@ body {
     padding: 0em;
     color:#fff;
     margin: 0;
+    min-width: 600px;
 }
 
 .color-light {
@@ -103,4 +104,46 @@ a {
     &.finish {
         background-color: #4CAF50;
     }
+}
+
+@viewport {
+    width: device-width ;
+    zoom: 1.0 ;
+  }
+
+@media screen and (max-width: 930px){
+    //zoom: 2;
+
+    .attention-header{
+        div.block {
+            display: block !important;
+        }
+    }
+
+    .block{
+        display: block;
+        display: table-row;
+    }
+
+    .scaled{
+        transform: scale(0.7);
+        //transform-origin: left;
+        //transform-origin: top;
+        //display: block;
+        padding: 0em 0em 0em 0em !important;
+    }
+
+    .scaled-text{
+        font-size: 70%;
+        //display: block;
+        max-width: 390px;
+    }
+    .transform-left {
+        transform-origin: left;
+        
+    }
+    .transform-right {
+        transform-origin: right;
+    }
+
 }
