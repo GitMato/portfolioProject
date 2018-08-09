@@ -138,8 +138,10 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
        animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
 
-    this.player = myAnimation.create(this.carousel.nativeElement);
-    this.player.play();
+    if (this.carousel.nativeElement != undefined){
+      this.player = myAnimation.create(this.carousel.nativeElement);
+      this.player.play();
+    }
   }
 
   prevButton(){
@@ -165,8 +167,10 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
       animate(this.timing, style({ transform: `translateX(-${offset}px)` }))
     ]);
 
-    this.player = myAnimation.create(this.carousel.nativeElement);
-    this.player.play();
+    if (this.carousel.nativeElement != undefined){
+      this.player = myAnimation.create(this.carousel.nativeElement);
+      this.player.play();
+    }
    }
 
    goToSlide(index: number){
