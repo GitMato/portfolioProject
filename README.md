@@ -21,3 +21,6 @@ The main purpose of this portfolio project was to learn and practise my web deve
   > Lists all the projects added
 - About
   > about me
+
+## Todo
+- Mobile-friendliness
