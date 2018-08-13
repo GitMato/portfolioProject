@@ -1,6 +1,6 @@
 # Portfolio
 
-https://portfolio-mato.herokuapp.com
+Deployed: https://portfolio-mato.herokuapp.com
 
 Portfolio project's  frontend.
 Backend: https://github.com/GitMato/portfolioProjectBackend
