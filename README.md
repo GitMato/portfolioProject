@@ -1,6 +1,9 @@
 # Portfolio
 
-Portfolio project's  frontend
+https://portfolio-mato.herokuapp.com
+
+Portfolio project's  frontend.
+Backend: https://github.com/GitMato/portfolioProjectBackend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
 
