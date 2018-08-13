@@ -199,7 +199,7 @@ export class CarouselComponent implements AfterViewInit, OnInit, OnDestroy {
    }
 
    createAnimationAndPlay(myAnimation: AnimationFactory){
-    if (this.carousel.nativeElement != undefined){
+    if (this.carousel != undefined){
       this.player = myAnimation.create(this.carousel.nativeElement);
       this.player.play();
     }
